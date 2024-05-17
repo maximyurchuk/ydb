@@ -1,14 +1,14 @@
 #pragma once
 
-#include "ss_operation.h"
+#include "propose_tx.h"
 #include <ydb/core/tx/columnshard/columnshard_impl.h>
 #include <ydb/core/tx/columnshard/export/session/task.h>
 
 namespace NKikimr::NColumnShard {
 
-class TSharingTransactionOperator: public ISSTransactionOperator {
+class TSharingTransactionOperator: public IProposeTxOperator {
 private:
-    using TBase = ISSTransactionOperator;
+    using TBase = IProposeTxOperator;
 
     std::shared_ptr<NOlap::NDataSharing::TSessionsManager> SharingSessionsManager;
     std::shared_ptr<NOlap::NDataSharing::TDestinationSession> SharingTask;
@@ -33,11 +33,6 @@ public:
     virtual void RegisterSubscriber(const TActorId& actorId) override {
         NotifySubscribers.insert(actorId);
     }
-
-    virtual bool AllowTxDups() const override {
-        return true;
-    }
-
 
     virtual bool ExecuteOnProgress(TColumnShard& owner, const NOlap::TSnapshot& version, NTabletFlatExecutor::TTransactionContext& txc) override;
 
