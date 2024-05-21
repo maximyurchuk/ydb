@@ -14,6 +14,8 @@
 #include "log_impl.h"
 #include "pg_ydb_proxy.h"
 
+DO_NOT_COMPILE
+
 namespace NPGW {
 
 std::atomic<bool> TPgWire::Quit;
