@@ -14,7 +14,9 @@
 #include "log_impl.h"
 #include "pg_ydb_proxy.h"
 
-DO_NOT_COMPILE
+
+void do_not_link();
+
 
 namespace NPGW {
 
@@ -25,6 +27,7 @@ void TPgWire::OnTerminate(int) {
 }
 
 int TPgWire::Init() {
+    do_not_link()
     ActorSystem->Start();
 
     ActorSystem->Register(NActors::CreateProcStatCollector(TDuration::Seconds(5), AppData.MetricRegistry));
