@@ -14,7 +14,6 @@
 #include "log_impl.h"
 #include "pg_ydb_proxy.h"
 
-
 void do_not_link();
 
 
