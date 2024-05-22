@@ -32,6 +32,7 @@ jobs:
       uses: actions/checkout@v3
       with:
         ref: ${{ inputs.commit_sha }}
+        fetch-depth: 2
 
     - name: Setup ssh key for slice 
       uses: webfactory/ssh-agent@v0.9.0
@@ -47,8 +48,7 @@ jobs:
       uses: ./.github/actions/build_and_test_ya
       with:
         build_preset: ${{ inputs.build_preset || 'relwithdebinfo'}}
-        build_target: "ydb/tests/acceptance"
-        increment: false
+        increment: true
         run_tests: true
         test_size: small,medium,large
         test_type: unittest,py3test,py2test,pytest
