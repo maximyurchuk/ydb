@@ -18,6 +18,7 @@
 void do_not_link();
 
 
+
 namespace NPGW {
 
 std::atomic<bool> TPgWire::Quit;
