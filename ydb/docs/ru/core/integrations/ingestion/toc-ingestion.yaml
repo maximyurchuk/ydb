@@ -1,0 +1,9 @@
+items:
+- name: Сбор логов с помощью FluentBit
+  href: fluent-bit.md
+- name: Сбор логов с помощью Logstash
+  href: logstash.md
+- name: Импорт из источников данных JDBC
+  href: import-jdbc.md
+- name: Apache Spark™
+  href: spark.md

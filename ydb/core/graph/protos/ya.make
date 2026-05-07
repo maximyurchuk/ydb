@@ -1,0 +1,10 @@
+PROTO_LIBRARY()
+PROTOC_FATAL_WARNINGS()
+
+SRCS(
+    graph.proto
+)
+
+EXCLUDE_TAGS(GO_PROTO)
+
+END()

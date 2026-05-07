@@ -1,0 +1,11 @@
+items:
+- name: Monitoring
+  href: monitoring.md
+- name: Logging
+  href: logging.md
+- name: System views
+  href: system-views.md
+- name: Tracing
+  href: ../../reference/observability/tracing/setup.md
+- name: Alerting
+  href: alerting.md

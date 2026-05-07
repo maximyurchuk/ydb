@@ -1,0 +1,12 @@
+RECURSE(
+    actors
+    common
+    comp_nodes
+    expr_nodes
+    opt
+    runtime
+    state
+    tasks
+    transform
+    type_ann
+)

@@ -1,0 +1,24 @@
+PY3TEST()
+
+TEST_SRCS(
+    test_ttl.py
+)
+
+INCLUDE(${ARCADIA_ROOT}/ydb/tests/harness_dep.inc)
+SIZE(MEDIUM)
+REQUIREMENTS(cpu:2)
+
+DEPENDS(
+)
+
+PEERDIR(
+    ydb/tests/library
+    ydb/tests/oss/ydb_sdk_import
+    ydb/public/sdk/python
+    contrib/python/PyHamcrest
+)
+
+FORK_SUBTESTS()
+FORK_TEST_FILES()
+
+END()

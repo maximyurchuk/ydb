@@ -1,0 +1,17 @@
+RECURSE(
+    canondata_sync
+    datastreams_helpers
+    fq_runner
+    fqrun
+    idx_test
+    kqprun
+    local_cluster
+    mdb_mock
+    nemesis
+    pq_read
+    s3_bench
+    s3_recipe
+    token_accessor_mock
+    ydb_serializable
+    ydb_serializable/replay
+)

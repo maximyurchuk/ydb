@@ -1,0 +1,17 @@
+RECURSE(
+    auth/ssa_delegation
+    basic_example
+    bulk_upsert_simple
+    executor
+    otel_tracing
+    pagination
+    secondary_index
+    secondary_index_builtin
+    time
+    topic_reader
+    topic_writer/transaction
+    topic_writer/producer/basic_write
+    ttl
+    vector_index
+    vector_index_builtin
+)

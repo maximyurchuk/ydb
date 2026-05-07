@@ -1,0 +1,12 @@
+PROTO_LIBRARY()
+PROTOC_FATAL_WARNINGS()
+
+GRPC()
+
+SRCS(
+    streaming_service.proto
+)
+
+EXCLUDE_TAGS(GO_PROTO)
+
+END()

@@ -1,0 +1,49 @@
+{
+    "meta": {
+        "type": "query",
+        "version": "0.2"
+    },
+    "tables": [
+        {
+            "name": "/local/base_write_insert_sql_plan/Input",
+            "writes": [
+                {
+                    "columns": [
+                        "key",
+                        "subkey",
+                        "value"
+                    ],
+                    "type": "MultiInsert"
+                }
+            ]
+        },
+        {
+            "name": "/local/base_write_insert_sql_plan/Input1",
+            "reads": [
+                {
+                    "columns": [
+                        "Group",
+                        "Name"
+                    ],
+                    "lookup_by": [
+                        "Group (1)"
+                    ],
+                    "scan_by": [
+                        "Name (-\u221e, +\u221e)"
+                    ],
+                    "type": "Scan"
+                }
+            ],
+            "writes": [
+                {
+                    "columns": [
+                        "Amount",
+                        "Group",
+                        "Name"
+                    ],
+                    "type": "MultiInsert"
+                }
+            ]
+        }
+    ]
+}
