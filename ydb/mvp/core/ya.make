@@ -1,0 +1,65 @@
+LIBRARY()
+
+SRCS(
+    appdata.cpp
+    cache_policy.cpp
+    core_ydb.cpp
+    core_ydbc.cpp
+    cracked_page.cpp
+    filter.cpp
+    mapper.cpp
+    merger.cpp
+    mvp_mem_profiler.cpp
+    mvp_security_printer.cpp
+    mvp_startup_options.cpp
+    mvp_startup_options_validation.cpp
+    mvp_startup_options_migration.cpp
+    mvp_test_runtime.cpp
+    mvp_token_exchange.cpp
+    mvp_tokens.cpp
+    parser.cpp
+    reducer.cpp
+    utils.cpp
+)
+
+PEERDIR(
+    contrib/libs/googleapis-common-protos
+    contrib/libs/jwt-cpp
+    contrib/libs/yaml-cpp
+    library/cpp/lfalloc/alloc_profiler
+    library/cpp/lwtrace/protos
+    library/cpp/protobuf/json
+    library/cpp/string_utils/url
+    ydb/core/protos
+    ydb/core/util
+    ydb/core/viewer/json
+    ydb/library/actors/core
+    ydb/library/actors/http
+    ydb/library/actors/protos
+    ydb/library/protobuf_printer
+    ydb/library/security
+    ydb/library/yaml_json
+    ydb/mvp/core/protos
+    ydb/mvp/security/simple
+    ydb/public/api/grpc
+    ydb/public/api/protos
+    ydb/public/api/client/nc_private
+    ydb/public/api/client/nc_private/iam/v1
+    ydb/public/api/client/yc_private/accessservice
+    ydb/public/api/client/yc_private/iam
+    ydb/public/api/client/yc_private/resourcemanager
+    ydb/public/api/client/yc_private/ydb/v1
+    ydb/public/sdk/cpp/src/client/datastreams
+    ydb/public/sdk/cpp/src/client/draft
+    ydb/public/sdk/cpp/src/client/persqueue_public
+    ydb/public/sdk/cpp/src/client/scheme
+    ydb/public/sdk/cpp/src/client/table
+    ydb/public/sdk/cpp/src/client/topic
+    ydb/public/sdk/cpp/src/library/operation_id
+)
+
+END()
+
+RECURSE_FOR_TESTS(
+    ut
+)

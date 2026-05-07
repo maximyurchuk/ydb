@@ -1,0 +1,17 @@
+RECURSE(
+    compatibility
+    datashard
+    example
+    fq
+    functional
+    library
+    library/sqs
+    olap
+    oss
+    solomon
+    sql
+    stability
+    stress
+    supp
+    tools
+)

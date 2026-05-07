@@ -1,0 +1,315 @@
+#include "configs_dispatcher.h"
+#include "immediate_controls_configurator.h"
+#include "ut_helpers.h"
+
+namespace NKikimr {
+
+using namespace NConsole;
+using namespace NConsole::NUT;
+
+namespace {
+
+TTenantTestConfig::TTenantPoolConfig StaticTenantPoolConfig()
+{
+    TTenantTestConfig::TTenantPoolConfig res = {
+        // Static slots {tenant, {cpu, memory, network}}
+        {{ {DOMAIN1_NAME, {1, 1, 1}} }},
+        // NodeType
+        "type1"
+    };
+    return res;
+}
+
+TTenantTestConfig DefaultConsoleTestConfig()
+{
+    TTenantTestConfig res = {
+        // Domains {name, schemeshard {{ subdomain_names }}}
+        {{ {DOMAIN1_NAME, SCHEME_SHARD1_ID, TVector<TString>()} }},
+        // HiveId
+        HIVE_ID,
+        // FakeTenantSlotBroker
+        true,
+        // FakeSchemeShard
+        false,
+        // CreateConsole
+        true,
+        // Nodes {tenant_pool_config, data_center}
+        {{
+                {StaticTenantPoolConfig()},
+        }},
+        // DataCenterCount
+        1,
+        // CreateConfigsDispatcher
+        true
+    };
+    return res;
+}
+
+NKikimrConsole::TConfigItem ITEM_CONTROLS_DEFAULT;
+NKikimrConsole::TConfigItem ITEM_CONTROLS1;
+NKikimrConsole::TConfigItem ITEM_CONTROLS2;
+NKikimrConsole::TConfigItem ITEM_CONTROLS2_RES;
+NKikimrConsole::TConfigItem ITEM_CONTROLS_MAX;
+NKikimrConsole::TConfigItem ITEM_CONTROLS_EXCEED_MAX;
+
+void InitImmediateControlsConfigurator(TTenantTestRuntime &runtime)
+{
+    runtime.Register(CreateImmediateControlsConfigurator(runtime.GetAppData().Icb,
+                                                         NKikimrConfig::TImmediateControlsConfig(),
+                                                         /* allowExistingControls */ true));
+    TDispatchOptions options;
+    options.FinalEvents.emplace_back(TEvConfigsDispatcher::EvSetConfigSubscriptionResponse, 1);
+    runtime.DispatchEvents(options);
+
+    ITEM_CONTROLS_DEFAULT
+        = MakeConfigItem(NKikimrConsole::TConfigItem::ImmediateControlsConfigItem,
+                         NKikimrConfig::TAppConfig(), {}, {}, "", "", 1,
+                         NKikimrConsole::TConfigItem::OVERWRITE, "");
+    {
+        auto &cfg = *ITEM_CONTROLS_DEFAULT.MutableConfig()->MutableImmediateControlsConfig();
+        cfg.MutableDataShardControls()->SetMaxTxInFly(15000);
+        cfg.MutableDataShardControls()->SetDisableByKeyFilter(0);
+        cfg.MutableDataShardControls()->SetMaxTxLagMilliseconds(300000);
+        cfg.MutableDataShardControls()->SetCanCancelROWithReadSets(0);
+        cfg.MutableTxLimitControls()->SetPerRequestDataSizeLimit(53687091200);
+        cfg.MutableTxLimitControls()->SetPerShardReadSizeLimit(5368709120);
+        cfg.MutableTxLimitControls()->SetPerShardIncomingReadSetSizeLimit(209715200);
+    }
+
+    ITEM_CONTROLS1
+        = MakeConfigItem(NKikimrConsole::TConfigItem::ImmediateControlsConfigItem,
+                         NKikimrConfig::TAppConfig(), {}, {}, "", "", 2,
+                         NKikimrConsole::TConfigItem::OVERWRITE, "");
+    {
+        auto &cfg = *ITEM_CONTROLS1.MutableConfig()->MutableImmediateControlsConfig();
+        cfg.MutableDataShardControls()->SetMaxTxInFly(3);
+        cfg.MutableDataShardControls()->SetDisableByKeyFilter(1);
+        cfg.MutableDataShardControls()->SetMaxTxLagMilliseconds(5);
+        cfg.MutableDataShardControls()->SetCanCancelROWithReadSets(1);
+        cfg.MutableTxLimitControls()->SetPerRequestDataSizeLimit(11);
+        cfg.MutableTxLimitControls()->SetPerShardReadSizeLimit(12);
+        cfg.MutableTxLimitControls()->SetPerShardIncomingReadSetSizeLimit(13);
+    }
+
+    ITEM_CONTROLS2
+        = MakeConfigItem(NKikimrConsole::TConfigItem::ImmediateControlsConfigItem,
+                         NKikimrConfig::TAppConfig(), {}, {}, "", "", 3,
+                         NKikimrConsole::TConfigItem::OVERWRITE, "");
+    {
+        auto &cfg = *ITEM_CONTROLS2.MutableConfig()->MutableImmediateControlsConfig();
+        cfg.MutableDataShardControls()->SetMaxTxInFly(3);
+        cfg.MutableDataShardControls()->SetCanCancelROWithReadSets(1);
+        cfg.MutableTxLimitControls()->SetPerRequestDataSizeLimit(11);
+        cfg.MutableTxLimitControls()->SetPerShardIncomingReadSetSizeLimit(13);
+    }
+
+    ITEM_CONTROLS2_RES
+        = MakeConfigItem(NKikimrConsole::TConfigItem::ImmediateControlsConfigItem,
+                         NKikimrConfig::TAppConfig(), {}, {}, "", "", 4,
+                         NKikimrConsole::TConfigItem::OVERWRITE, "");
+    {
+        auto &cfg = *ITEM_CONTROLS2_RES.MutableConfig()->MutableImmediateControlsConfig();
+        cfg.MutableDataShardControls()->SetMaxTxInFly(3);
+        cfg.MutableDataShardControls()->SetDisableByKeyFilter(0);
+        cfg.MutableDataShardControls()->SetMaxTxLagMilliseconds(300000);
+        cfg.MutableDataShardControls()->SetCanCancelROWithReadSets(1);
+        cfg.MutableTxLimitControls()->SetPerRequestDataSizeLimit(11);
+        cfg.MutableTxLimitControls()->SetPerShardReadSizeLimit(5368709120);
+        cfg.MutableTxLimitControls()->SetPerShardIncomingReadSetSizeLimit(13);
+    }
+
+    ITEM_CONTROLS_MAX
+        = MakeConfigItem(NKikimrConsole::TConfigItem::ImmediateControlsConfigItem,
+                         NKikimrConfig::TAppConfig(), {}, {}, "", "", 5,
+                         NKikimrConsole::TConfigItem::OVERWRITE, "");
+    {
+        auto &cfg = *ITEM_CONTROLS_MAX.MutableConfig()->MutableImmediateControlsConfig();
+        cfg.MutableDataShardControls()->SetMaxTxInFly(100000);
+        cfg.MutableDataShardControls()->SetDisableByKeyFilter(1);
+        cfg.MutableDataShardControls()->SetMaxTxLagMilliseconds(2592000000ULL);
+        cfg.MutableDataShardControls()->SetCanCancelROWithReadSets(1);
+        cfg.MutableTxLimitControls()->SetPerRequestDataSizeLimit(256000000000000ULL);
+        cfg.MutableTxLimitControls()->SetPerShardReadSizeLimit(107374182400ULL);
+        cfg.MutableTxLimitControls()->SetPerShardIncomingReadSetSizeLimit(5368709120ULL);
+    }
+
+    ITEM_CONTROLS_EXCEED_MAX
+        = MakeConfigItem(NKikimrConsole::TConfigItem::ImmediateControlsConfigItem,
+                         NKikimrConfig::TAppConfig(), {}, {}, "", "", 6,
+                         NKikimrConsole::TConfigItem::OVERWRITE, "");
+    {
+        auto &cfg = *ITEM_CONTROLS_EXCEED_MAX.MutableConfig()->MutableImmediateControlsConfig();
+        cfg.MutableDataShardControls()->SetMaxTxInFly(1000000);
+        cfg.MutableDataShardControls()->SetDisableByKeyFilter(10);
+        cfg.MutableDataShardControls()->SetMaxTxLagMilliseconds(25920000000ULL);
+        cfg.MutableDataShardControls()->SetCanCancelROWithReadSets(10);
+        cfg.MutableTxLimitControls()->SetPerRequestDataSizeLimit(300000000000000ULL);
+        cfg.MutableTxLimitControls()->SetPerShardReadSizeLimit(1073741824000ULL);
+        cfg.MutableTxLimitControls()->SetPerShardIncomingReadSetSizeLimit(53687091200ULL);
+    }
+}
+
+class TConfigUpdatesObserver {
+public:
+    TConfigUpdatesObserver(TTestActorRuntime& runtime)
+        : Runtime(runtime)
+        , Holder(Runtime.AddObserver<NConsole::TEvConsole::TEvConfigNotificationResponse>(
+            [this](auto& ev) {
+                auto& rec = ev->Get()->Record;
+                if (rec.GetConfigId().ItemIdsSize() != 1 || rec.GetConfigId().GetItemIds(0).GetId()) {
+                    ++Count;
+                }
+            }))
+    {}
+
+    void Clear() {
+        Count = 0;
+    }
+
+    void Wait() {
+        Runtime.WaitFor("config update", [this]{ return this->Count > 0; });
+        --Count;
+    }
+
+private:
+    TTestActorRuntime& Runtime;
+    TTestActorRuntime::TEventObserverHolder Holder;
+    size_t Count = 0;
+};
+
+template <typename ...Ts>
+void ConfigureAndWaitUpdate(TTenantTestRuntime &runtime, TConfigUpdatesObserver &updates,
+                            Ts... args)
+{
+    auto *event = new TEvConsole::TEvConfigureRequest;
+    CollectActions(event->Record, args...);
+
+    updates.Clear();
+    runtime.SendToConsole(event);
+    auto ev = runtime.GrabEdgeEventRethrow<TEvConsole::TEvConfigureResponse>(runtime.Sender);
+    UNIT_ASSERT_VALUES_EQUAL(ev->Get()->Record.GetStatus().GetCode(), Ydb::StatusIds::SUCCESS);
+    updates.Wait();
+}
+
+void CompareControls(TTenantTestRuntime &runtime,
+                     const NKikimrConfig::TImmediateControlsConfig &cfg)
+{
+    auto& icb = *runtime.GetAppData().Icb;
+
+    TControlWrapper wrapper;
+
+    TControlBoard::RegisterSharedControl(wrapper, icb.DataShardControls.MaxTxInFly);
+    UNIT_ASSERT_VALUES_EQUAL((ui64)(i64)wrapper, cfg.GetDataShardControls().GetMaxTxInFly());
+    TControlBoard::RegisterSharedControl(wrapper, icb.DataShardControls.DisableByKeyFilter);
+    UNIT_ASSERT_VALUES_EQUAL((ui64)(i64)wrapper, cfg.GetDataShardControls().GetDisableByKeyFilter());
+    TControlBoard::RegisterSharedControl(wrapper, icb.DataShardControls.MaxTxLagMilliseconds);
+    UNIT_ASSERT_VALUES_EQUAL((ui64)(i64)wrapper, cfg.GetDataShardControls().GetMaxTxLagMilliseconds());
+    TControlBoard::RegisterSharedControl(wrapper, icb.DataShardControls.CanCancelROWithReadSets);
+    UNIT_ASSERT_VALUES_EQUAL((ui64)(i64)wrapper, cfg.GetDataShardControls().GetCanCancelROWithReadSets());
+    TControlBoard::RegisterSharedControl(wrapper, icb.TxLimitControls.PerRequestDataSizeLimit);
+    UNIT_ASSERT_VALUES_EQUAL((ui64)(i64)wrapper, cfg.GetTxLimitControls().GetPerRequestDataSizeLimit());
+    TControlBoard::RegisterSharedControl(wrapper, icb.TxLimitControls.PerShardReadSizeLimit);
+    UNIT_ASSERT_VALUES_EQUAL((ui64)(i64)wrapper, cfg.GetTxLimitControls().GetPerShardReadSizeLimit());
+    TControlBoard::RegisterSharedControl(wrapper, icb.TxLimitControls.PerShardIncomingReadSetSizeLimit);
+    UNIT_ASSERT_VALUES_EQUAL((ui64)(i64)wrapper, cfg.GetTxLimitControls().GetPerShardIncomingReadSetSizeLimit());
+}
+
+} // anonymous namespace
+
+Y_UNIT_TEST_SUITE(TImmediateControlsConfiguratorTests)
+{
+    Y_UNIT_TEST(TestControlsInitialization)
+    {
+        TTenantTestRuntime runtime(DefaultConsoleTestConfig());
+        runtime.SimulateSleep(TDuration::MilliSeconds(100)); // settle down
+        TConfigUpdatesObserver updates(runtime);
+
+        InitImmediateControlsConfigurator(runtime);
+        updates.Wait(); // initial update
+
+        CompareControls(runtime, ITEM_CONTROLS_DEFAULT.GetConfig().GetImmediateControlsConfig());
+    }
+
+    Y_UNIT_TEST(TestModifiedControls)
+    {
+        TTenantTestRuntime runtime(DefaultConsoleTestConfig());
+        runtime.SimulateSleep(TDuration::MilliSeconds(100)); // settle down
+        TConfigUpdatesObserver updates(runtime);
+
+        InitImmediateControlsConfigurator(runtime);
+        updates.Wait(); // initial update
+
+        ConfigureAndWaitUpdate(runtime, updates,
+                               MakeAddAction(ITEM_CONTROLS1));
+        CompareControls(runtime, ITEM_CONTROLS1.GetConfig().GetImmediateControlsConfig());
+    }
+
+    Y_UNIT_TEST(TestResetToDefault)
+    {
+        TTenantTestRuntime runtime(DefaultConsoleTestConfig());
+        runtime.SimulateSleep(TDuration::MilliSeconds(100)); // settle down
+        TConfigUpdatesObserver updates(runtime);
+
+        InitImmediateControlsConfigurator(runtime);
+        updates.Wait(); // initial update
+
+        ConfigureAndWaitUpdate(runtime, updates,
+                               MakeAddAction(ITEM_CONTROLS1));
+        CompareControls(runtime, ITEM_CONTROLS1.GetConfig().GetImmediateControlsConfig());
+
+        ConfigureAndWaitUpdate(runtime, updates,
+                               MakeAddAction(ITEM_CONTROLS2));
+        CompareControls(runtime, ITEM_CONTROLS2_RES.GetConfig().GetImmediateControlsConfig());
+
+        ConfigureAndWaitUpdate(runtime, updates,
+                               MakeRemoveAction(1, 1),
+                               MakeRemoveAction(2, 1));
+
+        CompareControls(runtime, ITEM_CONTROLS_DEFAULT.GetConfig().GetImmediateControlsConfig());
+    }
+
+    Y_UNIT_TEST(TestMaxLimit)
+    {
+        TTenantTestRuntime runtime(DefaultConsoleTestConfig());
+        runtime.SimulateSleep(TDuration::MilliSeconds(100)); // settle down
+        TConfigUpdatesObserver updates(runtime);
+
+        InitImmediateControlsConfigurator(runtime);
+        updates.Wait(); // initial update
+
+        ConfigureAndWaitUpdate(runtime, updates,
+                               MakeAddAction(ITEM_CONTROLS_EXCEED_MAX));
+        CompareControls(runtime, ITEM_CONTROLS_MAX.GetConfig().GetImmediateControlsConfig());
+    }
+
+    Y_UNIT_TEST(TestDynamicMap)
+    {
+        TTenantTestRuntime runtime(DefaultConsoleTestConfig());
+        runtime.SimulateSleep(TDuration::MilliSeconds(100)); // settle down
+        TConfigUpdatesObserver updates(runtime);
+
+        InitImmediateControlsConfigurator(runtime);
+        updates.Wait(); // initial update
+
+        NKikimrConsole::TConfigItem dynamicMapValue;
+        {
+            auto &cfg = *dynamicMapValue.MutableConfig()->MutableImmediateControlsConfig();
+            auto *grpcControls = cfg.MutableGRpcControls();
+
+            auto *requestConfigs = grpcControls->MutableRequestConfigs();
+            auto &r = (*requestConfigs)["FooBar"];
+            r.SetMaxInFlight(10);
+        }
+
+        ConfigureAndWaitUpdate(runtime, updates, MakeAddAction(dynamicMapValue));
+
+        auto icb = runtime.GetAppData().Icb;
+
+        TControlWrapper wrapper;
+
+        TControlBoard::RegisterSharedControl(wrapper, icb->GRpcControls.RequestConfigs.FooBar.MaxInFlight);
+        UNIT_ASSERT_VALUES_EQUAL((ui64)(i64)wrapper, 10);
+    }
+}
+
+} // namespace NKikimr

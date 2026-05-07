@@ -1,0 +1,221 @@
+{
+    "Plan": {
+        "Node Type": "Query",
+        "PlanNodeType": "Query",
+        "Plans": [
+            {
+                "Node Type": "ResultSet",
+                "PlanNodeId": 13,
+                "PlanNodeType": "ResultSet",
+                "Plans": [
+                    {
+                        "Node Type": "Limit",
+                        "Operators": [
+                            {
+                                "Inputs": [
+                                    {
+                                        "ExternalPlanNodeId": 11
+                                    }
+                                ],
+                                "Limit": "1001",
+                                "Name": "Limit"
+                            }
+                        ],
+                        "PlanNodeId": 12,
+                        "Plans": [
+                            {
+                                "Node Type": "UnionAll",
+                                "PlanNodeId": 11,
+                                "PlanNodeType": "Connection",
+                                "Plans": [
+                                    {
+                                        "Node Type": "Limit-LeftJoin (Lookup)",
+                                        "Operators": [
+                                            {
+                                                "Inputs": [
+                                                    {
+                                                        "InternalOperatorId": 1
+                                                    }
+                                                ],
+                                                "Limit": "1001",
+                                                "Name": "Limit"
+                                            },
+                                            {
+                                                "Inputs": [
+                                                    {
+                                                        "ExternalPlanNodeId": 9
+                                                    }
+                                                ],
+                                                "Name": "LeftJoin (Lookup)"
+                                            }
+                                        ],
+                                        "PlanNodeId": 10,
+                                        "Plans": [
+                                            {
+                                                "Node Type": "UnionAll",
+                                                "PlanNodeId": 9,
+                                                "PlanNodeType": "Connection",
+                                                "Plans": [
+                                                    {
+                                                        "Node Type": "Collect",
+                                                        "PlanNodeId": 8,
+                                                        "Plans": [
+                                                            {
+                                                                "Columns": [
+                                                                    "f1"
+                                                                ],
+                                                                "E-Cost": "0",
+                                                                "E-Rows": "1",
+                                                                "E-Size": "0",
+                                                                "LookupKeyColumns": [
+                                                                    "f1"
+                                                                ],
+                                                                "Node Type": "TableLookupJoin",
+                                                                "Path": "/Root/postgres_jointest/join4.test_plan/zt1",
+                                                                "PlanNodeId": 7,
+                                                                "PlanNodeType": "Connection",
+                                                                "Plans": [
+                                                                    {
+                                                                        "Node Type": "LeftJoin (Lookup)",
+                                                                        "Operators": [
+                                                                            {
+                                                                                "Inputs": [
+                                                                                    {
+                                                                                        "ExternalPlanNodeId": 5
+                                                                                    }
+                                                                                ],
+                                                                                "Name": "LeftJoin (Lookup)"
+                                                                            }
+                                                                        ],
+                                                                        "PlanNodeId": 6,
+                                                                        "Plans": [
+                                                                            {
+                                                                                "Node Type": "UnionAll",
+                                                                                "PlanNodeId": 5,
+                                                                                "PlanNodeType": "Connection",
+                                                                                "Plans": [
+                                                                                    {
+                                                                                        "Node Type": "Collect",
+                                                                                        "PlanNodeId": 4,
+                                                                                        "Plans": [
+                                                                                            {
+                                                                                                "Columns": [
+                                                                                                    "f3"
+                                                                                                ],
+                                                                                                "E-Cost": "0",
+                                                                                                "E-Rows": "1",
+                                                                                                "E-Size": "0",
+                                                                                                "LookupKeyColumns": [
+                                                                                                    "f3"
+                                                                                                ],
+                                                                                                "Node Type": "TableLookupJoin",
+                                                                                                "Path": "/Root/postgres_jointest/join4.test_plan/zt3",
+                                                                                                "PlanNodeId": 3,
+                                                                                                "PlanNodeType": "Connection",
+                                                                                                "Plans": [
+                                                                                                    {
+                                                                                                        "Node Type": "Stage",
+                                                                                                        "PlanNodeId": 2,
+                                                                                                        "Plans": [
+                                                                                                            {
+                                                                                                                "Node Type": "TablePointLookup",
+                                                                                                                "Operators": [
+                                                                                                                    {
+                                                                                                                        "Inputs": [],
+                                                                                                                        "Name": "TablePointLookup",
+                                                                                                                        "Path": "/Root/postgres_jointest/join4.test_plan/zt2",
+                                                                                                                        "ReadColumns": [
+                                                                                                                            "f2"
+                                                                                                                        ],
+                                                                                                                        "ReadRange": [
+                                                                                                                            "f2 (53)"
+                                                                                                                        ],
+                                                                                                                        "Scan": "Parallel",
+                                                                                                                        "Table": "postgres_jointest/join4.test_plan/zt2"
+                                                                                                                    }
+                                                                                                                ],
+                                                                                                                "PlanNodeId": 1,
+                                                                                                                "Tables": [
+                                                                                                                    "postgres_jointest/join4.test_plan/zt2"
+                                                                                                                ]
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ],
+                                                                                                "Table": "postgres_jointest/join4.test_plan/zt3"
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ],
+                                                                "Table": "postgres_jointest/join4.test_plan/zt1"
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "Stats": {
+            "ResourcePoolId": "default"
+        }
+    },
+    "meta": {
+        "type": "query",
+        "version": "0.2"
+    },
+    "tables": [
+        {
+            "name": "/Root/postgres_jointest/join4.test_plan/zt1",
+            "reads": [
+                {
+                    "columns": [
+                        "f1"
+                    ],
+                    "lookup_by": [
+                        "f1"
+                    ],
+                    "type": "Lookup"
+                }
+            ]
+        },
+        {
+            "name": "/Root/postgres_jointest/join4.test_plan/zt2",
+            "reads": [
+                {
+                    "columns": [
+                        "f2"
+                    ],
+                    "lookup_by": [
+                        "f2 (53)"
+                    ],
+                    "type": "Lookup"
+                }
+            ]
+        },
+        {
+            "name": "/Root/postgres_jointest/join4.test_plan/zt3",
+            "reads": [
+                {
+                    "columns": [
+                        "f3"
+                    ],
+                    "lookup_by": [
+                        "f3"
+                    ],
+                    "type": "Lookup"
+                }
+            ]
+        }
+    ]
+}

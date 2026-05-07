@@ -1,0 +1,30 @@
+UNITTEST_FOR(ydb/core/tx/tiering)
+
+FORK_SUBTESTS()
+
+SPLIT_FACTOR(5)
+
+IF (SANITIZER_TYPE == "thread")
+    SIZE(LARGE)
+    INCLUDE(${ARCADIA_ROOT}/ydb/tests/large.inc)
+    REQUIREMENTS(ram:16)
+ELSE()
+    SIZE(MEDIUM)
+ENDIF()
+
+PEERDIR(
+    library/cpp/getopt
+    library/cpp/regex/pcre
+    library/cpp/svnversion
+    ydb/core/testlib/default
+    ydb/core/tx/sharding
+    ydb/public/lib/yson_value
+)
+
+YQL_LAST_ABI_VERSION()
+
+SRCS(
+    ut_sharding.cpp
+)
+
+END()

@@ -1,0 +1,10 @@
+PROTO_LIBRARY()
+PROTOC_FATAL_WARNINGS()
+
+SRCS(
+    schlab.proto
+)
+
+EXCLUDE_TAGS(GO_PROTO)
+
+END()

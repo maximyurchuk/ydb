@@ -1,0 +1,328 @@
+# -*- coding: utf-8 -*-
+import abc
+import library.python.port_manager
+import os
+
+
+class KikimrNodePortAllocatorInterface(object):
+    __metaclass__ = abc.ABCMeta
+
+    def __init__(self):
+        pass
+
+    @abc.abstractproperty
+    def grpc_ssl_port(self):
+        pass
+
+    @abc.abstractproperty
+    def mon_port(self):
+        pass
+
+    @abc.abstractproperty
+    def grpc_port(self):
+        pass
+
+    @abc.abstractproperty
+    def mbus_port(self):
+        pass
+
+    @abc.abstractproperty
+    def ic_port(self):
+        pass
+
+    @abc.abstractproperty
+    def sqs_port(self):
+        pass
+
+    @abc.abstractproperty
+    def http_proxy_port(self):
+        pass
+
+    @abc.abstractproperty
+    def public_http_port(self):
+        pass
+
+
+class KikimrPortAllocatorInterface(object):
+    __metaclass__ = abc.ABCMeta
+
+    def __init__(self):
+        pass
+
+    @abc.abstractmethod
+    def get_node_port_allocator(self, node_index):
+        """
+            Returns KikimrNodePortAllocatorInterface object
+        """
+        pass
+
+    @abc.abstractmethod
+    def get_slot_port_allocator(self, slot_index):
+        """
+            Returns KikimrNodePortAllocatorInterface object
+        """
+        pass
+
+    @abc.abstractmethod
+    def release_ports(self):
+        pass
+
+#
+# Port manager allocator
+#
+
+
+class KikimrPortManagerNodePortAllocator(KikimrNodePortAllocatorInterface):
+    def __init__(self, port_manager):
+        super(KikimrPortManagerNodePortAllocator, self).__init__()
+        self.__port_manager = port_manager
+        self.__mon_port = None
+        self.__grpc_port = None
+        self.__mbus_port = None
+        self.__ic_port = None
+        self.__sqs_port = None
+        self.__http_proxy_port = None
+        self.__grpc_ssl_port = None
+        self.__ext_port = None
+        self.__public_http_port = None
+        self.__pgwire_port = None
+        self.__kafka_api_port = None
+
+    @property
+    def mon_port(self):
+        if self.__mon_port is None:
+            self.__mon_port = self.__port_manager.get_port()
+        return self.__mon_port
+
+    @property
+    def kafka_api_port(self):
+        if self.__kafka_api_port is None:
+            self.__kafka_api_port = self.__port_manager.get_port()
+        return self.__kafka_api_port
+
+    @property
+    def grpc_port(self):
+        if self.__grpc_port is None:
+            self.__grpc_port = self.__port_manager.get_port()
+        return self.__grpc_port
+
+    @property
+    def mbus_port(self):
+        if self.__mbus_port is None:
+            self.__mbus_port = self.__port_manager.get_port()
+        return self.__mbus_port
+
+    @property
+    def ic_port(self):
+        if self.__ic_port is None:
+            self.__ic_port = self.__port_manager.get_port()
+        return self.__ic_port
+
+    @property
+    def grpc_ssl_port(self):
+        if self.__grpc_ssl_port is None:
+            self.__grpc_ssl_port = self.__port_manager.get_port()
+        return self.__grpc_ssl_port
+
+    @property
+    def sqs_port(self):
+        if self.__sqs_port is None:
+            self.__sqs_port = self.__port_manager.get_port()
+        return self.__sqs_port
+
+    @property
+    def http_proxy_port(self):
+        if self.__http_proxy_port is None:
+            self.__http_proxy_port = self.__port_manager.get_port()
+        return self.__http_proxy_port
+
+    @property
+    def pgwire_port(self):
+        if self.__pgwire_port is None:
+            self.__pgwire_port = self.__port_manager.get_port()
+        return self.__pgwire_port
+
+    @property
+    def public_http_port(self):
+        if self.__public_http_port is None:
+            self.__public_http_port = self.__port_manager.get_port()
+        return self.__public_http_port
+
+    @property
+    def ext_port(self):
+        if self.__ext_port is None:
+            self.__ext_port = self.__port_manager.get_port()
+        return self.__ext_port
+
+
+class KikimrPortManagerPortAllocator(KikimrPortAllocatorInterface):
+    def __init__(self, port_manager=None):
+        super(KikimrPortManagerPortAllocator, self).__init__()
+        self.__port_manager = library.python.port_manager.PortManager() if port_manager is None else port_manager
+        self.__nodes_allocators = []
+        self.__slots_allocators = []
+
+    def get_node_port_allocator(self, node_index):
+        if os.environ.get("YDB_TEST_FIXED_PORT") is not None:
+            # suitable for debugging, don't use in production
+            if node_index == 1:
+                return KikimrFixedNodePortAllocator(0)
+        while len(self.__nodes_allocators) <= node_index:
+            self.__nodes_allocators.append(KikimrPortManagerNodePortAllocator(self.__port_manager))
+        return self.__nodes_allocators[node_index]
+
+    def get_slot_port_allocator(self, slot_index):
+        while len(self.__slots_allocators) <= slot_index:
+            self.__slots_allocators.append(KikimrPortManagerNodePortAllocator(self.__port_manager))
+        return self.__slots_allocators[slot_index]
+
+    def release_ports(self):
+        self.__port_manager.release()
+
+
+# Default ports for the first node
+DEFAULT_GRPC_PORT = 2135
+DEFAULT_MON_PORT = 8765
+DEFAULT_IC_PORT = 19001
+DEFAULT_MBUS_PORT = 2134
+DEFAULT_GRPC_SSL_PORT = 2137
+DEFAULT_SQS_PORT = 8771
+DEFAULT_PUBLIC_HTTP_PORT = 8766
+DEFAULT_PGWIRE_PORT = 5432
+DEFAULT_HTTP_PROXY_PORT = 8433
+
+#
+# Fixed port allocator
+#
+
+
+class KikimrFixedNodePortAllocator(KikimrNodePortAllocatorInterface):
+
+    def __init__(
+        self,
+        base_port_offset,
+        mon_port=DEFAULT_MON_PORT,
+        grpc_port=DEFAULT_GRPC_PORT,
+        mbus_port=DEFAULT_MBUS_PORT,
+        ic_port=DEFAULT_IC_PORT,
+        sqs_port=DEFAULT_SQS_PORT,
+        grpc_ssl_port=DEFAULT_GRPC_SSL_PORT,
+        public_http_port=DEFAULT_PUBLIC_HTTP_PORT,
+        pgwire_port=DEFAULT_PGWIRE_PORT,
+        http_proxy_port=DEFAULT_HTTP_PROXY_PORT
+    ):
+        super(KikimrFixedNodePortAllocator, self).__init__()
+
+        self.base_port_offset = base_port_offset
+        self.__mon_port = int(os.getenv('MON_PORT', mon_port))
+        self.__grpc_port = int(os.getenv('GRPC_PORT', grpc_port))
+        self.__mbus_port = mbus_port
+        self.__ic_port = int(os.getenv('IC_PORT', ic_port))
+        self.__sqs_port = sqs_port
+        self.__grpc_ssl_port = int(os.getenv('GRPC_TLS_PORT', grpc_ssl_port))
+        self.__public_http_port = int(os.getenv('PUBLIC_HTTP_PORT', public_http_port))
+        self.__pgwire_port = int(os.getenv('YDB_PGWIRE_PORT', pgwire_port))
+        self.__http_proxy_port = int(os.getenv('HTTP_PROXY_PORT', http_proxy_port))
+
+    @property
+    def mon_port(self):
+        return self.__mon_port + self.base_port_offset
+
+    @property
+    def grpc_ssl_port(self):
+        return self.__grpc_ssl_port + self.base_port_offset
+
+    @property
+    def grpc_port(self):
+        return self.__grpc_port + self.base_port_offset
+
+    @property
+    def mbus_port(self):
+        return self.__mbus_port + self.base_port_offset
+
+    @property
+    def ic_port(self):
+        return self.__ic_port + self.base_port_offset
+
+    @property
+    def sqs_port(self):
+        return self.__sqs_port + self.base_port_offset
+
+    @property
+    def public_http_port(self):
+        return self.__public_http_port + self.base_port_offset
+
+    @property
+    def pgwire_port(self):
+        return self.__pgwire_port + self.base_port_offset
+
+    @property
+    def http_proxy_port(self):
+        return self.__http_proxy_port + self.base_port_offset
+
+
+class KikimrFixedPortAllocator(KikimrPortAllocatorInterface):
+    def __init__(self,
+                 base_port_offset):
+        super(KikimrFixedPortAllocator, self).__init__()
+        self.__default_value = KikimrFixedNodePortAllocator(base_port_offset)
+
+    def get_node_port_allocator(self, node_index):
+        return self.__default_value
+
+    def get_slot_port_allocator(self, slot_index):
+        return self.__default_value
+
+    def release_ports(self):
+        pass
+
+
+#
+# Default first node port allocator
+#
+
+# Port offset for additional nodes (each node gets +10 offset)
+PORT_OFFSET_STEP = 10
+
+
+class DefaultFirstNodePortAllocator(KikimrPortAllocatorInterface):
+    """
+    Port allocator that uses default ports for the first node
+    and unique ports with offset for other nodes.
+    """
+    def __init__(self, base_offset=0):
+        super(DefaultFirstNodePortAllocator, self).__init__()
+        self.__node_allocators = {}
+        self.base_offset = base_offset
+
+    def get_node_port_allocator(self, node_index):
+        if node_index not in self.__node_allocators:
+            if node_index == 1:
+                # First node uses base offset
+                self.__node_allocators[node_index] = KikimrFixedNodePortAllocator(base_port_offset=self.base_offset)
+            else:
+                # Other nodes use base offset + node offset
+                # Offset is base_offset + (node_index - 1) * PORT_OFFSET_STEP
+                port_offset = self.base_offset + (node_index - 1) * PORT_OFFSET_STEP
+                self.__node_allocators[node_index] = KikimrFixedNodePortAllocator(
+                    base_port_offset=port_offset,
+                    grpc_port=DEFAULT_GRPC_PORT,
+                    mon_port=DEFAULT_MON_PORT,
+                    ic_port=DEFAULT_IC_PORT,
+                    mbus_port=DEFAULT_MBUS_PORT,
+                )
+        return self.__node_allocators[node_index]
+
+    def get_slot_port_allocator(self, slot_index):
+        # For slots, use base offset + large number to avoid conflicts with nodes
+        slot_offset = self.base_offset + 10000 + (slot_index - 1) * PORT_OFFSET_STEP
+        return KikimrFixedNodePortAllocator(
+            base_port_offset=slot_offset,
+            grpc_port=DEFAULT_GRPC_PORT,
+            mon_port=DEFAULT_MON_PORT,
+            ic_port=DEFAULT_IC_PORT,
+            mbus_port=DEFAULT_MBUS_PORT,
+        )
+
+    def release_ports(self):
+        self.__node_allocators.clear()

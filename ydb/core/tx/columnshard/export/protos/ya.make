@@ -1,0 +1,13 @@
+PROTO_LIBRARY()
+PROTOC_FATAL_WARNINGS()
+
+SRCS(
+    cursor.proto
+    task.proto
+)
+
+PEERDIR(
+    ydb/core/protos
+)
+
+END()

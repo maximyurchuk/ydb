@@ -1,0 +1,267 @@
+{
+    "meta": {
+        "type": "script",
+        "version": "0.2"
+    },
+    "queries": [
+        {
+            "Plan": {
+                "Node Type": "Query",
+                "PlanNodeType": "Query",
+                "Plans": [
+                    {
+                        "Node Type": "ResultSet",
+                        "PlanNodeId": 11,
+                        "PlanNodeType": "ResultSet",
+                        "Plans": [
+                            {
+                                "Node Type": "Limit",
+                                "Operators": [
+                                    {
+                                        "Inputs": [
+                                            {
+                                                "ExternalPlanNodeId": 9
+                                            }
+                                        ],
+                                        "Limit": "1001",
+                                        "Name": "Limit"
+                                    }
+                                ],
+                                "PlanNodeId": 10,
+                                "Plans": [
+                                    {
+                                        "Node Type": "Merge",
+                                        "PlanNodeId": 9,
+                                        "PlanNodeType": "Connection",
+                                        "Plans": [
+                                            {
+                                                "Node Type": "TopSort-LeftJoin (Lookup)",
+                                                "Operators": [
+                                                    {
+                                                        "Inputs": [
+                                                            {
+                                                                "InternalOperatorId": 1
+                                                            }
+                                                        ],
+                                                        "Limit": "1001",
+                                                        "Name": "TopSort",
+                                                        "TopSortBy": "[Arg.a.Group,Arg.a.Count0,Arg.t.Value]"
+                                                    },
+                                                    {
+                                                        "Inputs": [
+                                                            {
+                                                                "ExternalPlanNodeId": 7
+                                                            }
+                                                        ],
+                                                        "Name": "LeftJoin (Lookup)"
+                                                    }
+                                                ],
+                                                "PlanNodeId": 8,
+                                                "Plans": [
+                                                    {
+                                                        "Node Type": "UnionAll",
+                                                        "PlanNodeId": 7,
+                                                        "PlanNodeType": "Connection",
+                                                        "Plans": [
+                                                            {
+                                                                "Node Type": "Collect",
+                                                                "PlanNodeId": 6,
+                                                                "Plans": [
+                                                                    {
+                                                                        "Columns": [
+                                                                            "Group",
+                                                                            "Value"
+                                                                        ],
+                                                                        "E-Cost": "0",
+                                                                        "E-Rows": "0",
+                                                                        "E-Size": "0",
+                                                                        "LookupKeyColumns": [
+                                                                            "Group"
+                                                                        ],
+                                                                        "Node Type": "TableLookupJoin",
+                                                                        "Path": "/local/base_join_group_by_lookup_script_script/Temp",
+                                                                        "PlanNodeId": 5,
+                                                                        "PlanNodeType": "Connection",
+                                                                        "Plans": [
+                                                                            {
+                                                                                "Node Type": "Aggregate",
+                                                                                "Operators": [
+                                                                                    {
+                                                                                        "Inputs": [
+                                                                                            {
+                                                                                                "ExternalPlanNodeId": 3
+                                                                                            }
+                                                                                        ],
+                                                                                        "Name": "Aggregate",
+                                                                                        "Phase": "Final"
+                                                                                    }
+                                                                                ],
+                                                                                "PlanNodeId": 4,
+                                                                                "Plans": [
+                                                                                    {
+                                                                                        "HashFunc": "HashV2",
+                                                                                        "KeyColumns": [
+                                                                                            "Group"
+                                                                                        ],
+                                                                                        "Node Type": "HashShuffle",
+                                                                                        "PlanNodeId": 3,
+                                                                                        "PlanNodeType": "Connection",
+                                                                                        "Plans": [
+                                                                                            {
+                                                                                                "Node Type": "Aggregate",
+                                                                                                "Operators": [
+                                                                                                    {
+                                                                                                        "Aggregation": "{SUM(1)}",
+                                                                                                        "GroupBy": "item.Group",
+                                                                                                        "Inputs": [
+                                                                                                            {
+                                                                                                                "ExternalPlanNodeId": 1
+                                                                                                            }
+                                                                                                        ],
+                                                                                                        "Name": "Aggregate",
+                                                                                                        "Phase": "Intermediate"
+                                                                                                    }
+                                                                                                ],
+                                                                                                "PlanNodeId": 2,
+                                                                                                "Plans": [
+                                                                                                    {
+                                                                                                        "Node Type": "TableFullScan",
+                                                                                                        "Operators": [
+                                                                                                            {
+                                                                                                                "Inputs": [],
+                                                                                                                "Name": "TableFullScan",
+                                                                                                                "Path": "/local/base_join_group_by_lookup_script_script/Input1",
+                                                                                                                "ReadColumns": [
+                                                                                                                    "Group (-\u221e, +\u221e)",
+                                                                                                                    "Name (-\u221e, +\u221e)"
+                                                                                                                ],
+                                                                                                                "ReadRangesPointPrefixLen": "0",
+                                                                                                                "Scan": "Parallel",
+                                                                                                                "Table": "base_join_group_by_lookup_script_script/Input1"
+                                                                                                            }
+                                                                                                        ],
+                                                                                                        "PlanNodeId": 1,
+                                                                                                        "Tables": [
+                                                                                                            "base_join_group_by_lookup_script_script/Input1"
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        ],
+                                                                        "Table": "base_join_group_by_lookup_script_script/Temp"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "SortColumns": [
+                                            "a.Group (Asc)",
+                                            "a.Count0 (Asc)",
+                                            "t.Value (Asc)"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "Stats": {
+                    "ResourcePoolId": "default"
+                }
+            },
+            "tables": [
+                {
+                    "name": "/local/base_join_group_by_lookup_script_script/Input1",
+                    "reads": [
+                        {
+                            "columns": [
+                                "Group"
+                            ],
+                            "scan_by": [
+                                "Group (-\u221e, +\u221e)",
+                                "Name (-\u221e, +\u221e)"
+                            ],
+                            "type": "FullScan"
+                        }
+                    ]
+                },
+                {
+                    "name": "/local/base_join_group_by_lookup_script_script/Temp",
+                    "reads": [
+                        {
+                            "columns": [
+                                "Group",
+                                "Value"
+                            ],
+                            "lookup_by": [
+                                "Group"
+                            ],
+                            "type": "Lookup"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "Plan": {
+                "Node Type": "Query",
+                "PlanNodeType": "Query",
+                "Plans": [
+                    {
+                        "Node Type": "Sink",
+                        "Operators": [
+                            {
+                                "Inputs": [],
+                                "Name": "Replace",
+                                "Path": "/local/base_join_group_by_lookup_script_script/Temp",
+                                "SinkType": "KqpTableSink",
+                                "Table": "base_join_group_by_lookup_script_script/Temp"
+                            }
+                        ],
+                        "PlanNodeId": 2,
+                        "Plans": [
+                            {
+                                "Node Type": "ConstantExpr",
+                                "Operators": [
+                                    {
+                                        "Inputs": [],
+                                        "Iterator": "[{Group: 1,Value: \"One\"},{Group: 3,Value: \"Three\"}]",
+                                        "Name": "Iterator"
+                                    }
+                                ],
+                                "PlanNodeId": 1
+                            }
+                        ],
+                        "Tables": [
+                            "base_join_group_by_lookup_script_script/Temp"
+                        ]
+                    }
+                ],
+                "Stats": {
+                    "ResourcePoolId": "default"
+                }
+            },
+            "tables": [
+                {
+                    "name": "/local/base_join_group_by_lookup_script_script/Temp",
+                    "writes": [
+                        {
+                            "columns": [
+                                "Group",
+                                "Value"
+                            ],
+                            "type": "MultiReplace"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
