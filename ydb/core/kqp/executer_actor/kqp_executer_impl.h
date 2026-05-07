@@ -176,7 +176,7 @@ public:
         ResponseEv = std::make_unique<TEvKqpExecuter::TEvTxResponse>(Request.TxAlloc, ExecType);
         ResponseEv->Orbit = std::move(Request.Orbit);
         Stats = std::make_unique<TQueryExecutionStats>(Request.StatsMode, &TasksGraph,
-            ResponseEv->Record.MutableResponse()->MutableResult()->MutableStats());
+            ResponseEv->Record.MutableResponse()->MutableResult()->MutableStats(), executerConfig.TableServiceConfig.GetQueryDeadlockTimeoutMs());
 
         StartTime = TAppData::TimeProvider->Now();
         if (Request.Timeout) {
@@ -458,7 +458,7 @@ protected:
                     if (!channel.DstTask) {
                         Y_ENSURE(ChannelService && ResultInputBuffers.find(channelId) == ResultInputBuffers.end());
                         auto inputBuffer = ChannelService->GetInputBuffer(NYql::NDq::TChannelFullInfo(channelId, task.ComputeActorId, SelfId(), task.StageId.StageId, 0,
-                            NYql::NDq::StatsModeToCollectStatsLevel(GetDqStatsMode(Request.StatsMode))));
+                            NYql::NDq::StatsModeToCollectStatsLevel(GetDqStatsMode(Request.StatsMode))), nullptr);
                         ReadResultFromInputBuffer(channelId, inputBuffer);
                         ResultInputBuffers.emplace(channelId, inputBuffer);
                     }
@@ -1301,7 +1301,7 @@ protected:
             Y_ENSURE(ChannelService);
             for (auto& [channelId, outputActorId] : Planner->ResultChannels) {
                 auto inputBuffer = ChannelService->GetInputBuffer(NYql::NDq::TChannelFullInfo(channelId, outputActorId, SelfId(), 0, 0,
-                    NYql::NDq::StatsModeToCollectStatsLevel(GetDqStatsMode(Request.StatsMode))));
+                    NYql::NDq::StatsModeToCollectStatsLevel(GetDqStatsMode(Request.StatsMode))), nullptr);
                 ReadResultFromInputBuffer(channelId, inputBuffer);
                 ResultInputBuffers.emplace(channelId, inputBuffer);
             }
