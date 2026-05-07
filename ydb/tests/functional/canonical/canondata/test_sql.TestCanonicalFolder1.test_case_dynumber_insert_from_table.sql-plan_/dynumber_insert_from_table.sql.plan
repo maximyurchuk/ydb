@@ -1,0 +1,35 @@
+{
+    "meta": {
+        "type": "query",
+        "version": "0.2"
+    },
+    "tables": [
+        {
+            "name": "/local/base_dynumber_insert_from_table_sql_plan/InputDyNumber",
+            "reads": [
+                {
+                    "columns": [
+                        "Key",
+                        "Value"
+                    ],
+                    "scan_by": [
+                        "Key (-\u221e, +\u221e)"
+                    ],
+                    "type": "FullScan"
+                }
+            ]
+        },
+        {
+            "name": "/local/base_dynumber_insert_from_table_sql_plan/ResultTableDyNumber",
+            "writes": [
+                {
+                    "columns": [
+                        "Key",
+                        "Value"
+                    ],
+                    "type": "MultiInsert"
+                }
+            ]
+        }
+    ]
+}

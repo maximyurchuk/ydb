@@ -1,0 +1,10 @@
+PROTO_LIBRARY()
+PROTOC_FATAL_WARNINGS()
+
+EXCLUDE_TAGS(GO_PROTO)
+
+SRCS(
+    login.proto
+)
+
+END()

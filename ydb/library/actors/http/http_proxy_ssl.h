@@ -1,0 +1,188 @@
+#pragma once
+
+#include <openssl/bio.h>
+#include <openssl/ssl.h>
+#include <openssl/err.h>
+#include <openssl/tls1.h>
+
+namespace NHttp {
+
+struct TSslHelpers {
+    struct TSslDestroy {
+        static void Destroy(SSL_CTX* ctx) noexcept {
+            SSL_CTX_free(ctx);
+        }
+
+        static void Destroy(SSL* ssl) noexcept {
+            SSL_free(ssl);
+        }
+
+        static void Destroy(X509* cert) noexcept {
+            X509_free(cert);
+        }
+
+        static void Destroy(EVP_PKEY* pkey) noexcept {
+            EVP_PKEY_free(pkey);
+        }
+
+        static void Destroy(BIO* bio) noexcept {
+            BIO_free(bio);
+        }
+    };
+
+    template <typename T>
+    using TSslHolder = THolder<T, TSslDestroy>;
+
+    static TSslHolder<SSL_CTX> CreateSslCtx(const SSL_METHOD* method) {
+        TSslHolder<SSL_CTX> ctx(SSL_CTX_new(method));
+
+        if (ctx) {
+            SSL_CTX_set_options(ctx.Get(), SSL_OP_NO_SSLv2);
+            SSL_CTX_set_options(ctx.Get(), SSL_OP_NO_SSLv3);
+            SSL_CTX_set_options(ctx.Get(), SSL_OP_NO_TLSv1);
+            SSL_CTX_set_options(ctx.Get(), SSL_OP_NO_TLSv1_1);
+            SSL_CTX_set_options(ctx.Get(), SSL_OP_MICROSOFT_SESS_ID_BUG);
+            SSL_CTX_set_options(ctx.Get(), SSL_OP_NETSCAPE_CHALLENGE_BUG);
+        }
+
+        return ctx;
+    }
+
+    static TSslHolder<SSL_CTX> CreateClientContext() {
+        return CreateSslCtx(SSLv23_client_method());
+    }
+
+    static TSslHolder<SSL_CTX> CreateServerContext(const TString& certificate, const TString& key, const TString& caFile) {
+        TSslHolder<SSL_CTX> ctx = CreateSslCtx(SSLv23_server_method());
+        SSL_CTX_set_ecdh_auto(ctx.Get(), 1);
+        int res;
+        res = SSL_CTX_use_certificate_chain_file(ctx.Get(), certificate.c_str());
+        if (res < 0) {
+            // TODO(xenoxeno): more diagnostics?
+            return nullptr;
+        }
+        // Load key. The key can be set through explicit key field or with the same file with certificate
+        res = SSL_CTX_use_PrivateKey_file(ctx.Get(), key.empty() ? certificate.c_str() : key.c_str(), SSL_FILETYPE_PEM);
+        if (res < 0) {
+            // TODO(xenoxeno): more diagnostics?
+            return nullptr;
+        }
+        if (!caFile.empty()) {
+            if (SSL_CTX_load_verify_locations(ctx.Get(), caFile.c_str(), nullptr) != 1) {
+                // TODO(yurikiselev): more diagnostics?
+                return nullptr;
+            }
+            // SSL_VERIFY_PEER option requests the client certificate during TLS handshake (mTLS),
+            // but doesn't fail if not provided
+            SSL_CTX_set_verify(ctx.Get(), SSL_VERIFY_PEER, nullptr);
+        }
+
+        return ctx;
+    }
+
+    static bool LoadX509Chain(TSslHolder<SSL_CTX>& ctx, const TString& pem) {
+        TSslHolder<BIO> bio(BIO_new_mem_buf(pem.c_str(), pem.size()));
+        if (bio == nullptr) {
+            return false;
+        }
+        TSslHolder<X509> cert(PEM_read_bio_X509_AUX(bio.Get(), nullptr, nullptr, nullptr));
+        if (cert == nullptr) {
+            return false;
+        }
+        if (SSL_CTX_use_certificate(ctx.Get(), cert.Release()) <= 0) {
+            return false;
+        }
+        SSL_CTX_clear_chain_certs(ctx.Get());
+        while (true) {
+            TSslHolder<X509> ca(PEM_read_bio_X509(bio.Get(), nullptr, nullptr, nullptr));
+            if (ca == nullptr) {
+                break;
+            }
+            if (!SSL_CTX_add0_chain_cert(ctx.Get(), ca.Release())) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    static bool LoadPrivateKey(TSslHolder<SSL_CTX>& ctx, const TString& pem) {
+        TSslHolder<BIO> bio(BIO_new_mem_buf(pem.c_str(), pem.size()));
+        if (bio == nullptr) {
+            return false;
+        }
+        TSslHolder<EVP_PKEY> pkey(PEM_read_bio_PrivateKey(bio.Get(), nullptr, nullptr, nullptr));
+        if (SSL_CTX_use_PrivateKey(ctx.Get(), pkey.Release()) <= 0) {
+            return false;
+        }
+        return true;
+    }
+
+    static TSslHolder<SSL_CTX> CreateServerContext(const TString& pem, const TString& caFile) {
+        TSslHolder<SSL_CTX> ctx = CreateSslCtx(SSLv23_server_method());
+        SSL_CTX_set_ecdh_auto(ctx.Get(), 1);
+        if (!LoadX509Chain(ctx, pem)) {
+            return nullptr;
+        }
+        if (!LoadPrivateKey(ctx, pem)) {
+            return nullptr;
+        }
+        if (!caFile.empty()) {
+            if (SSL_CTX_load_verify_locations(ctx.Get(), caFile.c_str(), nullptr) != 1) {
+                // TODO(yurikiselev): more diagnostics?
+                return nullptr;
+            }
+            // SSL_VERIFY_PEER option requests the client certificate during TLS handshake (mTLS),
+            // but doesn't fail if not provided
+            SSL_CTX_set_verify(ctx.Get(), SSL_VERIFY_PEER, nullptr);
+        }
+
+        return ctx;
+    }
+
+    static TSslHolder<SSL> ConstructSsl(SSL_CTX* ctx, BIO* bio) {
+        TSslHolder<SSL> ssl(SSL_new(ctx));
+
+        if (ssl) {
+            BIO_up_ref(bio); // SSL_set_bio consumes only one reference if rbio and wbio are the same
+            SSL_set_bio(ssl.Get(), bio, bio);
+        }
+
+        return ssl;
+    }
+
+    // ALPN callback for HTTP/2 negotiation (server-side)
+    // Advertises both "h2" and "http/1.1", prefers "h2"
+    static int AlpnSelectCallback(SSL*, const unsigned char** out, unsigned char* outlen,
+                                   const unsigned char* in, unsigned int inlen, void*) {
+        // Try to select "h2" first, then "http/1.1"
+        static const unsigned char h2[] = { 2, 'h', '2' };
+        static const unsigned char h1[] = { 8, 'h', 't', 't', 'p', '/', '1', '.', '1' };
+
+        if (SSL_select_next_proto(const_cast<unsigned char**>(out), outlen,
+                                   h2, sizeof(h2), in, inlen) == OPENSSL_NPN_NEGOTIATED) {
+            return SSL_TLSEXT_ERR_OK;
+        }
+        if (SSL_select_next_proto(const_cast<unsigned char**>(out), outlen,
+                                   h1, sizeof(h1), in, inlen) == OPENSSL_NPN_NEGOTIATED) {
+            return SSL_TLSEXT_ERR_OK;
+        }
+        return SSL_TLSEXT_ERR_NOACK;
+    }
+
+    // Enable ALPN on a server SSL context for HTTP/2 support
+    static void EnableAlpn(SSL_CTX* ctx) {
+        SSL_CTX_set_alpn_select_cb(ctx, AlpnSelectCallback, nullptr);
+    }
+
+    // Set ALPN protocols for client SSL context (advertise h2 and http/1.1)
+    static void SetClientAlpn(SSL_CTX* ctx) {
+        // Wire format: length-prefixed protocol names
+        static const unsigned char protos[] = {
+            2, 'h', '2',
+            8, 'h', 't', 't', 'p', '/', '1', '.', '1'
+        };
+        SSL_CTX_set_alpn_protos(ctx, protos, sizeof(protos));
+    }
+};
+
+}

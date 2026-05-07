@@ -1,0 +1,21 @@
+UNITTEST_FOR(ydb/core/public_http)
+
+SIZE(SMALL)
+
+SRCS(
+    http_router_ut.cpp
+)
+
+PEERDIR(
+    ydb/services/kesus
+    ydb/services/persqueue_cluster_discovery
+    yql/essentials/minikql/comp_nodes/llvm16
+    yql/essentials/public/udf/service/exception_policy
+    yql/essentials/sql/pg_dummy
+    yt/yql/providers/yt/comp_nodes/dq/llvm16
+    yt/yql/providers/yt/comp_nodes/llvm16
+)
+
+YQL_LAST_ABI_VERSION()
+
+END()

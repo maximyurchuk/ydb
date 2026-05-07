@@ -1,0 +1,24 @@
+UNITTEST_FOR(ydb/core/fq/libs/common)
+
+FORK_SUBTESTS()
+
+IF (SANITIZER_TYPE)
+    SIZE(MEDIUM)
+ENDIF()
+
+SRCS(
+    cache_ut.cpp
+    entity_id_ut.cpp
+    iceberg_processor_ut.cpp
+    rows_proto_splitter_ut.cpp
+    util_ut.cpp
+)
+
+PEERDIR(
+    yql/essentials/sql/pg_dummy
+    ydb/core/testlib
+)
+
+YQL_LAST_ABI_VERSION()
+
+END()

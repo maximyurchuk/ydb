@@ -1,0 +1,25 @@
+UNITTEST_FOR(ydb/services/cms)
+
+FORK_SUBTESTS()
+
+IF (SANITIZER_TYPE)
+    REQUIREMENTS(cpu:2)
+    SIZE(MEDIUM)
+ENDIF()
+
+SRCS(
+    cms_ut.cpp
+)
+
+PEERDIR(
+    library/cpp/getopt
+    ydb/public/sdk/cpp/src/library/grpc/client
+    library/cpp/regex/pcre
+    library/cpp/svnversion
+    ydb/core/testlib/default
+    ydb/services/cms
+)
+
+YQL_LAST_ABI_VERSION()
+
+END()

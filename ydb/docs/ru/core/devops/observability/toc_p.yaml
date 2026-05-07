@@ -1,0 +1,11 @@
+items:
+- name: Мониторинг
+  href: monitoring.md
+- name: Логирование
+  href: logging.md
+- name: Системные представления
+  href: system-views.md
+- name: Трассировка
+  href: ../../reference/observability/tracing/setup.md
+- name: Алертинг
+  href: alerting.md

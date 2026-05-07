@@ -1,0 +1,70 @@
+LIBRARY()
+
+PEERDIR(
+    ydb/library/actors/core
+    ydb/library/wilson_ids
+    library/cpp/containers/disjoint_interval_tree
+    library/cpp/string_utils/base64
+    ydb/core/util
+    ydb/core/base
+    ydb/core/grpc_services
+    ydb/core/persqueue/common
+    ydb/core/persqueue/events
+    ydb/core/persqueue/public
+    ydb/core/persqueue/public/counters
+    ydb/core/persqueue/public/cluster_tracker
+    ydb/core/protos
+    ydb/core/scheme
+    ydb/core/tx/scheme_cache
+    ydb/core/ydb_convert
+    ydb/library/aclib
+    ydb/library/persqueue
+    ydb/library/persqueue/topic_parser
+    ydb/library/cloud_permissions
+    ydb/public/api/protos
+    ydb/public/lib/base
+    ydb/services/lib/actors
+    ydb/services/lib/sharding
+    ydb/services/metadata
+    ydb/services/persqueue_v1/actors/schema
+)
+
+SRCS(
+    codecs.h
+    codecs.cpp
+    commit_offset_actor.h
+    commit_offset_actor.cpp
+    distributed_commit_helper.h
+    distributed_commit_helper.cpp
+    events.h
+    persqueue_utils.h
+    persqueue_utils.cpp
+    helpers.h
+    helpers.cpp
+    partition_actor.h
+    partition_actor.cpp
+    partition_id.h
+    read_init_auth_actor.h
+    read_init_auth_actor.cpp
+    read_info_actor.h
+    read_info_actor.cpp
+    read_session_actor.h
+    read_session_actor.cpp
+    direct_read_actor.h
+    direct_read_actor.cpp
+    write_session_actor.h
+    write_session_actor.cpp
+    schema_actors.h
+    schema_actors.cpp
+    update_offsets_in_transaction_actor.cpp
+    partition_writer.h
+    partition_writer.cpp
+    partition_writer_cache_actor.h
+    partition_writer_cache_actor.cpp
+)
+
+END()
+
+RECURSE(
+    schema
+)

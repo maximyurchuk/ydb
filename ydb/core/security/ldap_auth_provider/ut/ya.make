@@ -1,0 +1,25 @@
+UNITTEST_FOR(ydb/core/security/ldap_auth_provider)
+
+FORK_SUBTESTS()
+
+SIZE(MEDIUM)
+IF (SANITIZER_TYPE)
+    REQUIREMENTS(cpu:2)
+ELSE()
+    REQUIREMENTS(cpu:2)
+ENDIF()
+
+PEERDIR(
+    ydb/core/testlib/default
+    ydb/core/security/ldap_auth_provider/test_utils
+    ydb/library/testlib/service_mocks/ldap_mock
+)
+
+YQL_LAST_ABI_VERSION()
+
+SRCS(
+    ldap_auth_provider_ut.cpp
+    ldap_utils_ut.cpp
+)
+
+END()

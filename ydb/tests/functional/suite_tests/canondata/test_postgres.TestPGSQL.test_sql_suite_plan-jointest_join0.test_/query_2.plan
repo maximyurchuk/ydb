@@ -1,0 +1,380 @@
+{
+    "Plan": {
+        "Node Type": "Query",
+        "PlanNodeType": "Query",
+        "Plans": [
+            {
+                "Node Type": "ResultSet",
+                "PlanNodeId": 21,
+                "PlanNodeType": "ResultSet",
+                "Plans": [
+                    {
+                        "Node Type": "Limit",
+                        "Operators": [
+                            {
+                                "Inputs": [
+                                    {
+                                        "ExternalPlanNodeId": 19
+                                    }
+                                ],
+                                "Limit": "1001",
+                                "Name": "Limit"
+                            }
+                        ],
+                        "PlanNodeId": 20,
+                        "Plans": [
+                            {
+                                "Node Type": "UnionAll",
+                                "PlanNodeId": 19,
+                                "PlanNodeType": "Connection",
+                                "Plans": [
+                                    {
+                                        "Node Type": "Limit-CrossJoin-InnerJoin (Map)-Filter",
+                                        "Operators": [
+                                            {
+                                                "Inputs": [
+                                                    {
+                                                        "InternalOperatorId": 1
+                                                    },
+                                                    {
+                                                        "InternalOperatorId": 1
+                                                    },
+                                                    {
+                                                        "InternalOperatorId": 1
+                                                    },
+                                                    {
+                                                        "InternalOperatorId": 1
+                                                    },
+                                                    {
+                                                        "InternalOperatorId": 1
+                                                    },
+                                                    {
+                                                        "InternalOperatorId": 1
+                                                    },
+                                                    {
+                                                        "InternalOperatorId": 1
+                                                    },
+                                                    {
+                                                        "InternalOperatorId": 1
+                                                    },
+                                                    {
+                                                        "InternalOperatorId": 1
+                                                    }
+                                                ],
+                                                "Limit": "1001",
+                                                "Name": "Limit"
+                                            },
+                                            {
+                                                "Inputs": [
+                                                    {
+                                                        "InternalOperatorId": 2
+                                                    },
+                                                    {
+                                                        "ExternalPlanNodeId": 7
+                                                    }
+                                                ],
+                                                "Name": "CrossJoin"
+                                            },
+                                            {
+                                                "Condition": "b.Sum0 = t.thousand",
+                                                "Inputs": [
+                                                    {
+                                                        "InternalOperatorId": 3
+                                                    },
+                                                    {
+                                                        "ExternalPlanNodeId": 10
+                                                    }
+                                                ],
+                                                "Name": "InnerJoin (Map)"
+                                            },
+                                            {
+                                                "Inputs": [
+                                                    {
+                                                        "ExternalPlanNodeId": 17
+                                                    }
+                                                ],
+                                                "Name": "Filter",
+                                                "Predicate": "Exist(item.Sum0)"
+                                            }
+                                        ],
+                                        "PlanNodeId": 18,
+                                        "Plans": [
+                                            {
+                                                "Node Type": "Map",
+                                                "PlanNodeId": 17,
+                                                "PlanNodeType": "Connection",
+                                                "Plans": [
+                                                    {
+                                                        "Node Type": "Aggregate",
+                                                        "Operators": [
+                                                            {
+                                                                "Inputs": [
+                                                                    {
+                                                                        "ExternalPlanNodeId": 15
+                                                                    }
+                                                                ],
+                                                                "Name": "Aggregate",
+                                                                "Phase": "Final"
+                                                            }
+                                                        ],
+                                                        "PlanNodeId": 16,
+                                                        "Plans": [
+                                                            {
+                                                                "Node Type": "UnionAll",
+                                                                "PlanNodeId": 15,
+                                                                "PlanNodeType": "Connection",
+                                                                "Plans": [
+                                                                    {
+                                                                        "Node Type": "Aggregate",
+                                                                        "Operators": [
+                                                                            {
+                                                                                "Inputs": [
+                                                                                    {
+                                                                                        "ExternalPlanNodeId": 13
+                                                                                    }
+                                                                                ],
+                                                                                "Name": "Aggregate",
+                                                                                "Phase": "Final"
+                                                                            }
+                                                                        ],
+                                                                        "PlanNodeId": 14,
+                                                                        "Plans": [
+                                                                            {
+                                                                                "Node Type": "UnionAll",
+                                                                                "PlanNodeId": 13,
+                                                                                "PlanNodeType": "Connection",
+                                                                                "Plans": [
+                                                                                    {
+                                                                                        "Node Type": "Aggregate",
+                                                                                        "Operators": [
+                                                                                            {
+                                                                                                "Inputs": [
+                                                                                                    {
+                                                                                                        "ExternalPlanNodeId": 11
+                                                                                                    }
+                                                                                                ],
+                                                                                                "Name": "Aggregate",
+                                                                                                "Phase": "Intermediate"
+                                                                                            }
+                                                                                        ],
+                                                                                        "PlanNodeId": 12,
+                                                                                        "Plans": [
+                                                                                            {
+                                                                                                "Node Type": "TableFullScan",
+                                                                                                "Operators": [
+                                                                                                    {
+                                                                                                        "Inputs": [],
+                                                                                                        "Name": "TableFullScan",
+                                                                                                        "Path": "/Root/postgres_jointest/join0.test_plan/int4_tbl",
+                                                                                                        "ReadColumns": [
+                                                                                                            "f1 (-\u221e, +\u221e)"
+                                                                                                        ],
+                                                                                                        "ReadRangesPointPrefixLen": "0",
+                                                                                                        "Scan": "Parallel",
+                                                                                                        "Table": "postgres_jointest/join0.test_plan/int4_tbl"
+                                                                                                    }
+                                                                                                ],
+                                                                                                "PlanNodeId": 11,
+                                                                                                "Tables": [
+                                                                                                    "postgres_jointest/join0.test_plan/int4_tbl"
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "Node Type": "Broadcast",
+                                                "PlanNodeId": 10,
+                                                "PlanNodeType": "Connection",
+                                                "Plans": [
+                                                    {
+                                                        "Node Type": "Stage",
+                                                        "PlanNodeId": 9,
+                                                        "Plans": [
+                                                            {
+                                                                "Node Type": "TableFullScan",
+                                                                "Operators": [
+                                                                    {
+                                                                        "Inputs": [],
+                                                                        "Name": "TableFullScan",
+                                                                        "Path": "/Root/postgres_jointest/join0.test_plan/tenk1",
+                                                                        "ReadColumns": [
+                                                                            "unique1 (-\u221e, +\u221e)",
+                                                                            "unique2 (-\u221e, +\u221e)",
+                                                                            "tenthous",
+                                                                            "thousand"
+                                                                        ],
+                                                                        "ReadRangesPointPrefixLen": "0",
+                                                                        "Scan": "Parallel",
+                                                                        "Table": "postgres_jointest/join0.test_plan/tenk1"
+                                                                    }
+                                                                ],
+                                                                "PlanNodeId": 8,
+                                                                "Tables": [
+                                                                    "postgres_jointest/join0.test_plan/tenk1"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "Node Type": "Broadcast",
+                                                "PlanNodeId": 7,
+                                                "PlanNodeType": "Connection",
+                                                "Plans": [
+                                                    {
+                                                        "Node Type": "Aggregate",
+                                                        "Operators": [
+                                                            {
+                                                                "Inputs": [
+                                                                    {
+                                                                        "ExternalPlanNodeId": 5
+                                                                    }
+                                                                ],
+                                                                "Name": "Aggregate",
+                                                                "Phase": "Final"
+                                                            }
+                                                        ],
+                                                        "PlanNodeId": 6,
+                                                        "Plans": [
+                                                            {
+                                                                "Node Type": "UnionAll",
+                                                                "PlanNodeId": 5,
+                                                                "PlanNodeType": "Connection",
+                                                                "Plans": [
+                                                                    {
+                                                                        "Node Type": "Aggregate",
+                                                                        "Operators": [
+                                                                            {
+                                                                                "Inputs": [
+                                                                                    {
+                                                                                        "ExternalPlanNodeId": 3
+                                                                                    }
+                                                                                ],
+                                                                                "Name": "Aggregate",
+                                                                                "Phase": "Final"
+                                                                            }
+                                                                        ],
+                                                                        "PlanNodeId": 4,
+                                                                        "Plans": [
+                                                                            {
+                                                                                "Node Type": "UnionAll",
+                                                                                "PlanNodeId": 3,
+                                                                                "PlanNodeType": "Connection",
+                                                                                "Plans": [
+                                                                                    {
+                                                                                        "Node Type": "Aggregate",
+                                                                                        "Operators": [
+                                                                                            {
+                                                                                                "Inputs": [
+                                                                                                    {
+                                                                                                        "ExternalPlanNodeId": 1
+                                                                                                    }
+                                                                                                ],
+                                                                                                "Name": "Aggregate",
+                                                                                                "Phase": "Intermediate"
+                                                                                            }
+                                                                                        ],
+                                                                                        "PlanNodeId": 2,
+                                                                                        "Plans": [
+                                                                                            {
+                                                                                                "Node Type": "TableFullScan",
+                                                                                                "Operators": [
+                                                                                                    {
+                                                                                                        "Inputs": [],
+                                                                                                        "Name": "TableFullScan",
+                                                                                                        "Path": "/Root/postgres_jointest/join0.test_plan/int4_tbl",
+                                                                                                        "ReadColumns": [
+                                                                                                            "f1 (-\u221e, +\u221e)"
+                                                                                                        ],
+                                                                                                        "ReadRangesPointPrefixLen": "0",
+                                                                                                        "Scan": "Parallel",
+                                                                                                        "Table": "postgres_jointest/join0.test_plan/int4_tbl"
+                                                                                                    }
+                                                                                                ],
+                                                                                                "PlanNodeId": 1,
+                                                                                                "Tables": [
+                                                                                                    "postgres_jointest/join0.test_plan/int4_tbl"
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "Stats": {
+            "ResourcePoolId": "default"
+        }
+    },
+    "meta": {
+        "type": "query",
+        "version": "0.2"
+    },
+    "tables": [
+        {
+            "name": "/Root/postgres_jointest/join0.test_plan/int4_tbl",
+            "reads": [
+                {
+                    "columns": [
+                        "f1"
+                    ],
+                    "scan_by": [
+                        "f1 (-\u221e, +\u221e)"
+                    ],
+                    "type": "FullScan"
+                },
+                {
+                    "columns": [
+                        "f1"
+                    ],
+                    "scan_by": [
+                        "f1 (-\u221e, +\u221e)"
+                    ],
+                    "type": "FullScan"
+                }
+            ]
+        },
+        {
+            "name": "/Root/postgres_jointest/join0.test_plan/tenk1",
+            "reads": [
+                {
+                    "columns": [
+                        "tenthous",
+                        "thousand"
+                    ],
+                    "scan_by": [
+                        "unique1 (-\u221e, +\u221e)",
+                        "unique2 (-\u221e, +\u221e)"
+                    ],
+                    "type": "FullScan"
+                }
+            ]
+        }
+    ]
+}

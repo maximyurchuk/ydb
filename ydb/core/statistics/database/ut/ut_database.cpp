@@ -1,0 +1,125 @@
+#include <ydb/core/statistics/ut_common/ut_common.h>
+
+#include <ydb/core/statistics/events.h>
+#include <ydb/core/statistics/database/database.h>
+
+#include <ydb/public/sdk/cpp/include/ydb-cpp-sdk/client/table/table.h>
+
+#include <thread>
+
+namespace NKikimr::NStat {
+
+Y_UNIT_TEST_SUITE(StatisticsSaveLoad) {
+    Y_UNIT_TEST(Simple) {
+        TTestEnv env(1, 1);
+        auto& runtime = *env.GetServer().GetRuntime();
+
+        CreateDatabase(env, "Database");
+
+        auto sender = runtime.AllocateEdgeActor(0);
+        runtime.Register(CreateStatisticsTableCreator(
+            std::make_unique<TEvStatistics::TEvStatTableCreationResponse>(), "/Root/Database"),
+            0, 0, TMailboxType::Simple, 0, sender);
+        runtime.GrabEdgeEventRethrow<TEvStatistics::TEvStatTableCreationResponse>(sender);
+
+        TPathId pathId(1, 1);
+        EStatType statType = EStatType::COUNT_MIN_SKETCH;
+        std::vector<TStatisticsItem> statItems;
+        statItems.emplace_back(1, statType, "dataA");
+        statItems.emplace_back(2, statType, "dataB");
+
+        runtime.Register(CreateSaveStatisticsQuery(sender, "/Root/Database",
+            pathId, std::move(statItems)),
+            0, 0, TMailboxType::Simple, 0, sender);
+        auto saveResponse = runtime.GrabEdgeEventRethrow<TEvStatistics::TEvSaveStatisticsQueryResponse>(sender);
+        UNIT_ASSERT(saveResponse->Get()->Success);
+
+        runtime.RunCall([&] {
+            DispatchLoadStatisticsQuery(sender, 123, "/Root/Database", pathId, statType, 1);
+            return 0;
+        });
+        auto loadResponseA = runtime.GrabEdgeEventRethrow<TEvStatistics::TEvLoadStatisticsQueryResponse>(sender);
+        UNIT_ASSERT(loadResponseA->Get()->Success);
+        UNIT_ASSERT(loadResponseA->Get()->Data);
+        UNIT_ASSERT_VALUES_EQUAL(*loadResponseA->Get()->Data, "dataA");
+
+        runtime.RunCall([&] {
+            DispatchLoadStatisticsQuery(sender, 345, "/Root/Database", pathId, statType, 2);
+            return 0;
+        });
+        auto loadResponseB = runtime.GrabEdgeEventRethrow<TEvStatistics::TEvLoadStatisticsQueryResponse>(sender);
+        UNIT_ASSERT(loadResponseB->Get()->Success);
+        UNIT_ASSERT(loadResponseB->Get()->Data);
+        UNIT_ASSERT_VALUES_EQUAL(*loadResponseB->Get()->Data, "dataB");
+    }
+
+    Y_UNIT_TEST(Delete) {
+        TTestEnv env(1, 1);
+        auto& runtime = *env.GetServer().GetRuntime();
+
+        CreateDatabase(env, "Database");
+
+        auto sender = runtime.AllocateEdgeActor(0);
+        runtime.Register(CreateStatisticsTableCreator(
+            std::make_unique<TEvStatistics::TEvStatTableCreationResponse>(), "/Root/Database"),
+            0, 0, TMailboxType::Simple, 0, sender);
+        runtime.GrabEdgeEvent<TEvStatistics::TEvStatTableCreationResponse>(sender);
+
+        TPathId pathId(1, 1);
+        EStatType statType = EStatType::COUNT_MIN_SKETCH;
+        std::vector<TStatisticsItem> statItems;
+        statItems.emplace_back(1, statType, "dataA");
+        statItems.emplace_back(2, statType, "dataB");
+
+        runtime.Register(CreateSaveStatisticsQuery(sender, "/Root/Database",
+            pathId, std::move(statItems)),
+            0, 0, TMailboxType::Simple, 0, sender);
+        auto saveResponse = runtime.GrabEdgeEvent<TEvStatistics::TEvSaveStatisticsQueryResponse>(sender);
+        UNIT_ASSERT(saveResponse->Get()->Success);
+
+        runtime.Register(CreateDeleteStatisticsQuery(sender, "/Root/Database", pathId),
+            0, 0, TMailboxType::Simple, 0, sender);
+        auto deleteResponse = runtime.GrabEdgeEvent<TEvStatistics::TEvDeleteStatisticsQueryResponse>(sender);
+        UNIT_ASSERT(deleteResponse->Get()->Success);
+
+        runtime.RunCall([&] {
+            DispatchLoadStatisticsQuery(sender, 123, "/Root/Database", pathId, statType, 1);
+            return 0;
+        });
+        auto loadResponseA = runtime.GrabEdgeEvent<TEvStatistics::TEvLoadStatisticsQueryResponse>(sender);
+        UNIT_ASSERT(!loadResponseA->Get()->Success);
+    }
+
+    Y_UNIT_TEST(ForbidAccess) {
+        TTestEnv env(1, 1);
+        auto& runtime = *env.GetServer().GetRuntime();
+
+        CreateDatabase(env, "Database", 1, true);
+        PrepareUniformTable(env, "Database", "Table");
+
+        NYdb::EStatus status;
+        auto test = [&] () {
+            auto driverConfig = NYdb::TDriverConfig()
+                .SetEndpoint(env.GetEndpoint())
+                .SetDatabase("/Root")
+                .SetAuthToken("user@builtin");
+            auto driver = NYdb::TDriver(driverConfig);
+            auto db = NYdb::NTable::TTableClient(driver);
+            auto session = db.CreateSession().GetValueSync().GetSession();
+
+            auto result = session.ExecuteDataQuery(R"(
+                SELECT * FROM `/Root/Database/.metadata/_statistics`;
+            )", NYdb::NTable::TTxControl::BeginTx().CommitTx()).ExtractValueSync();
+            status = result.GetStatus();
+        };
+        std::thread testThread(test);
+
+        runtime.SimulateSleep(TDuration::Seconds(1));
+        testThread.join();
+
+        UNIT_ASSERT_VALUES_EQUAL(status, NYdb::EStatus::SCHEME_ERROR);
+    }
+
+}
+
+} // NKikimr::NStat

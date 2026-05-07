@@ -1,0 +1,11 @@
+PROTO_LIBRARY()
+PROTOC_FATAL_WARNINGS()
+
+SRCS(
+    container.proto
+)
+
+PEERDIR(
+)
+
+END()
