@@ -1,0 +1,162 @@
+{
+    "Plan": {
+        "Node Type": "Query",
+        "PlanNodeType": "Query",
+        "Plans": [
+            {
+                "Node Type": "ResultSet",
+                "PlanNodeId": 9,
+                "PlanNodeType": "ResultSet",
+                "Plans": [
+                    {
+                        "Node Type": "Limit",
+                        "Operators": [
+                            {
+                                "Inputs": [
+                                    {
+                                        "ExternalPlanNodeId": 7
+                                    }
+                                ],
+                                "Limit": "1001",
+                                "Name": "Limit"
+                            }
+                        ],
+                        "PlanNodeId": 8,
+                        "Plans": [
+                            {
+                                "Node Type": "UnionAll",
+                                "PlanNodeId": 7,
+                                "PlanNodeType": "Connection",
+                                "Plans": [
+                                    {
+                                        "Node Type": "Limit-LeftJoin (Lookup)",
+                                        "Operators": [
+                                            {
+                                                "Inputs": [
+                                                    {
+                                                        "InternalOperatorId": 1
+                                                    }
+                                                ],
+                                                "Limit": "1001",
+                                                "Name": "Limit"
+                                            },
+                                            {
+                                                "Inputs": [
+                                                    {
+                                                        "ExternalPlanNodeId": 5
+                                                    }
+                                                ],
+                                                "Name": "LeftJoin (Lookup)"
+                                            }
+                                        ],
+                                        "PlanNodeId": 6,
+                                        "Plans": [
+                                            {
+                                                "Node Type": "UnionAll",
+                                                "PlanNodeId": 5,
+                                                "PlanNodeType": "Connection",
+                                                "Plans": [
+                                                    {
+                                                        "Node Type": "Collect",
+                                                        "PlanNodeId": 4,
+                                                        "Plans": [
+                                                            {
+                                                                "Columns": [
+                                                                    "x",
+                                                                    "y"
+                                                                ],
+                                                                "E-Cost": "0",
+                                                                "E-Rows": "0",
+                                                                "E-Size": "0",
+                                                                "LookupKeyColumns": [
+                                                                    "x",
+                                                                    "y"
+                                                                ],
+                                                                "Node Type": "TableLookupJoin",
+                                                                "Path": "/Root/postgres_jointest/join4.test_plan/tqb",
+                                                                "PlanNodeId": 3,
+                                                                "PlanNodeType": "Connection",
+                                                                "Plans": [
+                                                                    {
+                                                                        "Node Type": "Stage",
+                                                                        "PlanNodeId": 2,
+                                                                        "Plans": [
+                                                                            {
+                                                                                "Node Type": "TableFullScan",
+                                                                                "Operators": [
+                                                                                    {
+                                                                                        "Inputs": [],
+                                                                                        "Name": "TableFullScan",
+                                                                                        "Path": "/Root/postgres_jointest/join4.test_plan/tqa",
+                                                                                        "ReadColumns": [
+                                                                                            "i (-\u221e, +\u221e)"
+                                                                                        ],
+                                                                                        "ReadRangesPointPrefixLen": "0",
+                                                                                        "Scan": "Parallel",
+                                                                                        "Table": "postgres_jointest/join4.test_plan/tqa"
+                                                                                    }
+                                                                                ],
+                                                                                "PlanNodeId": 1,
+                                                                                "Tables": [
+                                                                                    "postgres_jointest/join4.test_plan/tqa"
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ],
+                                                                "Table": "postgres_jointest/join4.test_plan/tqb"
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "Stats": {
+            "ResourcePoolId": "default"
+        }
+    },
+    "meta": {
+        "type": "query",
+        "version": "0.2"
+    },
+    "tables": [
+        {
+            "name": "/Root/postgres_jointest/join4.test_plan/tqa",
+            "reads": [
+                {
+                    "columns": [
+                        "i"
+                    ],
+                    "scan_by": [
+                        "i (-\u221e, +\u221e)"
+                    ],
+                    "type": "FullScan"
+                }
+            ]
+        },
+        {
+            "name": "/Root/postgres_jointest/join4.test_plan/tqb",
+            "reads": [
+                {
+                    "columns": [
+                        "x",
+                        "y"
+                    ],
+                    "lookup_by": [
+                        "x",
+                        "y"
+                    ],
+                    "type": "Lookup"
+                }
+            ]
+        }
+    ]
+}

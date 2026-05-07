@@ -1,0 +1,2398 @@
+{
+  "sensors": [
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/InFlightLimitReachedDurationMs"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/MessageLagByCommitted"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/MessageLagByLastRead"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/PartitionMaxReadQuotaUsage"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadBytesAvailAvgMin"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadBytesAvailAvgSec"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadBytesMaxPerDay"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadBytesMaxPerHour"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadBytesMaxPerMin"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadBytesMaxPerSec"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadBytesPerDay"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadBytesPerHour"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadBytesPerMin"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadBytesPerSec"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadBytesQuota"
+      },
+      "value": 0
+    },
+    {
+      "kind": "RATE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadOffsetRewindSum"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadTimeLagMs"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/SizeLagByCommitted"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/SizeLagByLastRead"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/TimeSinceLastReadMs"
+      },
+      "value": 5109
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/TotalMessageLagByCommitted"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/TotalMessageLagByLastRead"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/TotalSizeLagByLastRead"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/TotalTimeLagMsByLastRead"
+      },
+      "value": 100
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/UserPartitionsAnswered"
+      },
+      "value": 2
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/WriteTimeLagMsByLastRead"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/WriteTimeLagMsByLastReadOld"
+      },
+      "value": 5009
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/InFlightLimitReachedDurationMs"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/MessageLagByCommitted"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/MessageLagByLastRead"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/PartitionMaxReadQuotaUsage"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadBytesAvailAvgMin"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadBytesAvailAvgSec"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadBytesMaxPerDay"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadBytesMaxPerHour"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadBytesMaxPerMin"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadBytesMaxPerSec"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadBytesPerDay"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadBytesPerHour"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadBytesPerMin"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadBytesPerSec"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadBytesQuota"
+      },
+      "value": 0
+    },
+    {
+      "kind": "RATE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadOffsetRewindSum"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadTimeLagMs"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/SizeLagByCommitted"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/SizeLagByLastRead"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/TimeSinceLastReadMs"
+      },
+      "value": 5109
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/TotalMessageLagByCommitted"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/TotalMessageLagByLastRead"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/TotalSizeLagByLastRead"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/TotalTimeLagMsByLastRead"
+      },
+      "value": 100
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/UserPartitionsAnswered"
+      },
+      "value": 2
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/WriteTimeLagMsByLastRead"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/WriteTimeLagMsByLastReadOld"
+      },
+      "value": 5009
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/InFlightLimitReachedDurationMs"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/MessageLagByCommitted"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/MessageLagByLastRead"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/PartitionMaxReadQuotaUsage"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/ReadBytesAvailAvgMin"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/ReadBytesAvailAvgSec"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/ReadBytesMaxPerDay"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/ReadBytesMaxPerHour"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/ReadBytesMaxPerMin"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/ReadBytesMaxPerSec"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/ReadBytesPerDay"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/ReadBytesPerHour"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/ReadBytesPerMin"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/ReadBytesPerSec"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/ReadBytesQuota"
+      },
+      "value": 0
+    },
+    {
+      "kind": "RATE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/ReadOffsetRewindSum"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/ReadTimeLagMs"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/SizeLagByCommitted"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/SizeLagByLastRead"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/TimeSinceLastReadMs"
+      },
+      "value": 5109
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/TotalMessageLagByCommitted"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/TotalMessageLagByLastRead"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/TotalSizeLagByLastRead"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/TotalTimeLagMsByLastRead"
+      },
+      "value": 100
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/UserPartitionsAnswered"
+      },
+      "value": 2
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/WriteTimeLagMsByLastRead"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "total",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/WriteTimeLagMsByLastReadOld"
+      },
+      "value": 5009
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/InFlightLimitReachedDurationMs"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/MessageLagByCommitted"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/MessageLagByLastRead"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/PartitionMaxReadQuotaUsage"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadBytesAvailAvgMin"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadBytesAvailAvgSec"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadBytesMaxPerDay"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadBytesMaxPerHour"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadBytesMaxPerMin"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadBytesMaxPerSec"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadBytesPerDay"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadBytesPerHour"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadBytesPerMin"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadBytesPerSec"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadBytesQuota"
+      },
+      "value": 0
+    },
+    {
+      "kind": "RATE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadOffsetRewindSum"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/ReadTimeLagMs"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/SizeLagByCommitted"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/SizeLagByLastRead"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/TimeSinceLastReadMs"
+      },
+      "value": 5109
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/TotalMessageLagByCommitted"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/TotalMessageLagByLastRead"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/TotalSizeLagByLastRead"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/TotalTimeLagMsByLastRead"
+      },
+      "value": 100
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/UserPartitionsAnswered"
+      },
+      "value": 2
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/WriteTimeLagMsByLastRead"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/WriteTimeLagMsByLastReadOld"
+      },
+      "value": 5009
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "total",
+        "sensor": "PQ/InFlightLimitReachedDurationMs"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "total",
+        "sensor": "PQ/MessageLagByCommitted"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "total",
+        "sensor": "PQ/MessageLagByLastRead"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "total",
+        "sensor": "PQ/PartitionMaxReadQuotaUsage"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "total",
+        "sensor": "PQ/ReadBytesAvailAvgMin"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "total",
+        "sensor": "PQ/ReadBytesAvailAvgSec"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "total",
+        "sensor": "PQ/ReadBytesMaxPerDay"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "total",
+        "sensor": "PQ/ReadBytesMaxPerHour"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "total",
+        "sensor": "PQ/ReadBytesMaxPerMin"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "total",
+        "sensor": "PQ/ReadBytesMaxPerSec"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "total",
+        "sensor": "PQ/ReadBytesPerDay"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "total",
+        "sensor": "PQ/ReadBytesPerHour"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "total",
+        "sensor": "PQ/ReadBytesPerMin"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "total",
+        "sensor": "PQ/ReadBytesPerSec"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "total",
+        "sensor": "PQ/ReadBytesQuota"
+      },
+      "value": 0
+    },
+    {
+      "kind": "RATE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "total",
+        "sensor": "PQ/ReadOffsetRewindSum"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "total",
+        "sensor": "PQ/ReadTimeLagMs"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "total",
+        "sensor": "PQ/SizeLagByCommitted"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "total",
+        "sensor": "PQ/SizeLagByLastRead"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "total",
+        "sensor": "PQ/TimeSinceLastReadMs"
+      },
+      "value": 5109
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "total",
+        "sensor": "PQ/TotalMessageLagByCommitted"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "total",
+        "sensor": "PQ/TotalMessageLagByLastRead"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "total",
+        "sensor": "PQ/TotalSizeLagByLastRead"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "total",
+        "sensor": "PQ/TotalTimeLagMsByLastRead"
+      },
+      "value": 100
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "total",
+        "sensor": "PQ/UserPartitionsAnswered"
+      },
+      "value": 2
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "total",
+        "sensor": "PQ/WriteTimeLagMsByLastRead"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "0",
+        "topic": "total",
+        "sensor": "PQ/WriteTimeLagMsByLastReadOld"
+      },
+      "value": 5009
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/InFlightLimitReachedDurationMs"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/MessageLagByCommitted"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/MessageLagByLastRead"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/PartitionMaxReadQuotaUsage"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/ReadBytesAvailAvgMin"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/ReadBytesAvailAvgSec"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/ReadBytesMaxPerDay"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/ReadBytesMaxPerHour"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/ReadBytesMaxPerMin"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/ReadBytesMaxPerSec"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/ReadBytesPerDay"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/ReadBytesPerHour"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/ReadBytesPerMin"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/ReadBytesPerSec"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/ReadBytesQuota"
+      },
+      "value": 0
+    },
+    {
+      "kind": "RATE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/ReadOffsetRewindSum"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/ReadTimeLagMs"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/SizeLagByCommitted"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/SizeLagByLastRead"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/TimeSinceLastReadMs"
+      },
+      "value": 5109
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/TotalMessageLagByCommitted"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/TotalMessageLagByLastRead"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/TotalSizeLagByLastRead"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/TotalTimeLagMsByLastRead"
+      },
+      "value": 100
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/UserPartitionsAnswered"
+      },
+      "value": 2
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/WriteTimeLagMsByLastRead"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "client": "user",
+        "important": "total",
+        "topic": "total",
+        "sensor": "PQ/WriteTimeLagMsByLastReadOld"
+      },
+      "value": 5009
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/GapsCount"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/GapsMaxCount"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/GapsMaxSize"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/GapsSize"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/MaxPartSize"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/PartitionInitTimeMs"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/PartitionLifeTimeMs"
+      },
+      "value": 5009
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/PartitionMaxWriteQuotaUsage"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/PartitionsAnswered"
+      },
+      "value": 2
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/PartitionsTotal"
+      },
+      "value": 2
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/QuotaBytesMaxPerDay"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/QuotaBytesMaxPerHour"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/QuotaBytesMaxPerMin"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/QuotaBytesMaxPerSec"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/QuotaBytesPerDay"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/QuotaBytesPerHour"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/QuotaBytesPerMin"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/QuotaBytesPerSec"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/SourceIdCount"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/SourceIdMaxCount"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/SourceIdMinLifetimeMs"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/TotalPartSize"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/WriteBytesAvailAvgMin"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/WriteBytesAvailAvgSec"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/WriteBytesMaxPerDay"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/WriteBytesMaxPerHour"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/WriteBytesMaxPerMin"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/WriteBytesMaxPerSec"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/WriteBytesPerDay"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/WriteBytesPerHour"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/WriteBytesPerMin"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/WriteBytesPerSec"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/WriteBytesQuota"
+      },
+      "value": 50000000
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "rt3.dc1--asdfgs--topic",
+        "sensor": "PQ/WriteTimeLagMsByLastWrite"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/GapsCount"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/GapsMaxCount"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/GapsMaxSize"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/GapsSize"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/MaxPartSize"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/PartitionInitTimeMs"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/PartitionLifeTimeMs"
+      },
+      "value": 5009
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/PartitionMaxWriteQuotaUsage"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/PartitionsAnswered"
+      },
+      "value": 2
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/PartitionsTotal"
+      },
+      "value": 2
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/QuotaBytesMaxPerDay"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/QuotaBytesMaxPerHour"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/QuotaBytesMaxPerMin"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/QuotaBytesMaxPerSec"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/QuotaBytesPerDay"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/QuotaBytesPerHour"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/QuotaBytesPerMin"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/QuotaBytesPerSec"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/SourceIdCount"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/SourceIdMaxCount"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/SourceIdMinLifetimeMs"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/TotalPartSize"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/WriteBytesAvailAvgMin"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/WriteBytesAvailAvgSec"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/WriteBytesMaxPerDay"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/WriteBytesMaxPerHour"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/WriteBytesMaxPerMin"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/WriteBytesMaxPerSec"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/WriteBytesPerDay"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/WriteBytesPerHour"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/WriteBytesPerMin"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/WriteBytesPerSec"
+      },
+      "value": 0
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/WriteBytesQuota"
+      },
+      "value": 50000000
+    },
+    {
+      "kind": "GAUGE",
+      "labels": {
+        "user_counters": "PersQueue",
+        "topic": "total",
+        "sensor": "PQ/WriteTimeLagMsByLastWrite"
+      },
+      "value": 0
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+UNITTEST_FOR(ydb/core/tx/schemeshard)
+
+FORK_SUBTESTS()
+
+SPLIT_FACTOR(120)
+
+REQUIREMENTS(cpu:4)
+
+IF (SANITIZER_TYPE)
+    SIZE(LARGE)
+    INCLUDE(${ARCADIA_ROOT}/ydb/tests/large.inc)
+ELSE()
+    SIZE(MEDIUM)
+ENDIF()
+
+PEERDIR(
+    contrib/libs/double-conversion
+    library/cpp/streams/zstd
+    library/cpp/string_utils/quote
+    ydb/core/kqp/ut/common
+    ydb/core/tx/schemeshard/ut_helpers
+    ydb/core/util
+    ydb/core/wrappers/ut_helpers
+    ydb/core/ydb_convert
+    yql/essentials/sql/pg
+    yql/essentials/parser/pg_wrapper
+    ydb/core/testlib/audit_helpers
+)
+
+SRCS(
+    ut_restore.cpp
+    ut_restore_fs.cpp
+)
+
+YQL_LAST_ABI_VERSION()
+
+END()

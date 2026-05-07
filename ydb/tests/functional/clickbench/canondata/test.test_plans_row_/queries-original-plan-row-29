@@ -1,0 +1,127 @@
+{
+    "meta": {
+        "type": "script",
+        "version": "0.2"
+    },
+    "queries": [
+        {
+            "Plan": {
+                "Node Type": "Query",
+                "PlanNodeType": "Query",
+                "Plans": [
+                    {
+                        "Node Type": "ResultSet",
+                        "PlanNodeId": 6,
+                        "PlanNodeType": "ResultSet",
+                        "Plans": [
+                            {
+                                "Node Type": "Aggregate",
+                                "Operators": [
+                                    {
+                                        "Inputs": [
+                                            {
+                                                "ExternalPlanNodeId": 4
+                                            }
+                                        ],
+                                        "Name": "Aggregate",
+                                        "Phase": "Final"
+                                    }
+                                ],
+                                "PlanNodeId": 5,
+                                "Plans": [
+                                    {
+                                        "Node Type": "UnionAll",
+                                        "PlanNodeId": 4,
+                                        "PlanNodeType": "Connection",
+                                        "Plans": [
+                                            {
+                                                "Node Type": "Aggregate",
+                                                "Operators": [
+                                                    {
+                                                        "Inputs": [
+                                                            {
+                                                                "ExternalPlanNodeId": 2
+                                                            }
+                                                        ],
+                                                        "Name": "Aggregate",
+                                                        "Phase": "Final"
+                                                    }
+                                                ],
+                                                "PlanNodeId": 3,
+                                                "Plans": [
+                                                    {
+                                                        "Node Type": "UnionAll",
+                                                        "PlanNodeId": 2,
+                                                        "PlanNodeType": "Connection",
+                                                        "Plans": [
+                                                            {
+                                                                "Node Type": "Aggregate-TableFullScan",
+                                                                "Operators": [
+                                                                    {
+                                                                        "Inputs": [
+                                                                            {
+                                                                                "InternalOperatorId": 1
+                                                                            }
+                                                                        ],
+                                                                        "Name": "Aggregate",
+                                                                        "Phase": "Intermediate"
+                                                                    },
+                                                                    {
+                                                                        "Inputs": [],
+                                                                        "Name": "TableFullScan",
+                                                                        "Path": "/local/clickbench/plans/row/hits",
+                                                                        "ReadColumns": [
+                                                                            "CounterID (-\u221e, +\u221e)",
+                                                                            "EventDate (-\u221e, +\u221e)",
+                                                                            "UserID (-\u221e, +\u221e)",
+                                                                            "EventTime (-\u221e, +\u221e)",
+                                                                            "WatchID (-\u221e, +\u221e)",
+                                                                            "ResolutionWidth"
+                                                                        ],
+                                                                        "Scan": "Parallel",
+                                                                        "Table": "clickbench/plans/row/hits"
+                                                                    }
+                                                                ],
+                                                                "PlanNodeId": 1,
+                                                                "Tables": [
+                                                                    "clickbench/plans/row/hits"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "Stats": {
+                    "ResourcePoolId": "default"
+                }
+            },
+            "tables": [
+                {
+                    "name": "/local/clickbench/plans/row/hits",
+                    "reads": [
+                        {
+                            "columns": [
+                                "ResolutionWidth"
+                            ],
+                            "scan_by": [
+                                "CounterID (-\u221e, +\u221e)",
+                                "EventDate (-\u221e, +\u221e)",
+                                "UserID (-\u221e, +\u221e)",
+                                "EventTime (-\u221e, +\u221e)",
+                                "WatchID (-\u221e, +\u221e)"
+                            ],
+                            "type": "FullScan"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
