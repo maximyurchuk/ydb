@@ -1,6 +1,7 @@
 #include "kqp_partitioned_executer.h"
 #include "kqp_executer_stats.h"
 #include "kqp_executer.h"
+#include "kqp_partition_helper.h"
 
 #include <ydb/core/engine/minikql/minikql_engine_host.h>
 #include <ydb/core/kqp/common/kqp_batch_operations.h>

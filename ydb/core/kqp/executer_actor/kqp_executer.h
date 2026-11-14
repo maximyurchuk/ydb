@@ -1,13 +1,11 @@
 #pragma once
 
 #include <library/cpp/lwtrace/shuttle.h>
-#include <ydb/core/kqp/common/kqp_batch_operations.h>
 #include <ydb/core/kqp/common/kqp_current_query_stats.h>
 #include <ydb/core/kqp/common/kqp_tx.h>
 #include <ydb/core/kqp/common/kqp_event_ids.h>
 #include <ydb/core/kqp/common/buffer/events.h>
 #include <ydb/core/kqp/common/kqp_user_request_context.h>
-#include <ydb/core/kqp/executer_actor/kqp_partition_helper.h>
 #include <ydb/core/kqp/executer_actor/shards_resolver/kqp_shards_resolver_events.h>
 #include <ydb/core/kqp/query_data/kqp_query_data.h>
 #include <ydb/core/kqp/gateway/kqp_gateway.h>
@@ -20,6 +18,12 @@
 
 namespace NKikimr {
 namespace NKqp {
+
+namespace NBatchOperations {
+struct TSettings;
+}
+
+struct TPartitionPrunerConfig;
 
 struct TEvKqpExecuter {
     struct TEvCurrentExecutionStats : public TEventLocal<TEvCurrentExecutionStats, TKqpExecuterEvents::EvCurrentExecutionStats> {

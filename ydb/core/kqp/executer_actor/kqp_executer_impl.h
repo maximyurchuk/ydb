@@ -5,6 +5,7 @@
 
 #include "kqp_executer.h"
 #include "kqp_executer_stats.h"
+#include "kqp_partition_helper.h"
 #include "kqp_planner.h"
 #include "kqp_table_resolver.h"
 
@@ -14,6 +15,7 @@
 #include <ydb/core/base/tablet_pipecache.h>
 #include <ydb/core/grpc_services/local_rate_limiter.h>
 #include <ydb/core/kqp/common/control.h>
+#include <ydb/core/kqp/common/kqp_batch_operations.h>
 #include <ydb/core/kqp/common/kqp_lwtrace_probes.h>
 #include <ydb/core/kqp/common/kqp_ru_calc.h>
 #include <ydb/core/kqp/common/kqp_streaming_query_controller.h>

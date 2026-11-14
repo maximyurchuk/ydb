@@ -19,7 +19,9 @@
 #include <ydb/core/kqp/common/simple/mvcc_version.h>
 #include <ydb/core/kqp/common/simple/query_ast.h>
 #include <ydb/core/kqp/compile_service/kqp_compile_service.h>
+#include <ydb/core/kqp/common/kqp_batch_operations.h>
 #include <ydb/core/kqp/executer_actor/kqp_executer.h>
+#include <ydb/core/kqp/executer_actor/kqp_partition_helper.h>
 #include <ydb/core/kqp/executer_actor/kqp_locks_helper.h>
 #include <ydb/core/kqp/executer_actor/kqp_partitioned_executer.h>
 #include <ydb/core/kqp/executer_actor/kqp_table_resolver.h>
