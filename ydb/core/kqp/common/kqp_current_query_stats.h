@@ -1,5 +1,7 @@
 #pragma once
 
+#include <library/cpp/time_provider/monotonic.h>
+
 #include <util/datetime/base.h>
 #include <util/system/types.h>
 
